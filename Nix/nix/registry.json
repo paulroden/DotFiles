@@ -1,0 +1,16 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "microvm",
+        "type": "indirect"
+      },
+      "to": {
+        "owner": "astro",
+        "repo": "microvm.nix",
+        "type": "github"
+      }
+    }
+  ],
+  "version": 2
+}

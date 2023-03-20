@@ -1,0 +1,293 @@
+#+title: NixOS VM on QEMU on MacOS
+#+author: Paul Roden Henderson
+#+startup: overview inlineimages
+#+attr_html: :width 100px
+
+
+* Preamble
+These are rudimentary instructions on how to create a working NixOS virtual machine, hosted on MacOS (13.2.1 at time of writing) through QEMU (optionally using UTM as a GUI). While doing many things in the world of Nix is simple, declarative and stateless, creating a VM is not (though there are strong efforts towards this <TODO: references here>). To ameliorate this point of misery, below are a set of depressingly sequential, almost robotic steps to follow to create a functioning NixOS virtual machine to be run within MacOS. We’ll name it Nemo (/NixOS Environment on MacOS/). Because it’s difficult to find.
+#+attr_org: :width 300px
+#+attr_html: :width 300px
+[[./nemo.jpg]]
+
+
+* The Setup
+First download a current NixOS ISO image which targets ARM and UEFI. The ‘minimal’ version without a GUI is fine. The Nix Hydra build for this, with a new Linux kernel is [[https://hydra.nixos.org/job/nixos/trunk-combined/nixos.iso_minimal_new_kernel.aarch64-linux][here]]. Newer versions are generally likely to have better hardware support as things currently stand (see [[https://nixos.wiki/wiki/NixOS_on_ARM/UEFI#Getting_the_installer_image_.28ISO.2][here]]). Today’s build is ~nixos-minimal-new-kernel-23.05pre456191.b69883faca9-aarch64-linux.iso~
+
+A copy of [[https://mac.getutm.app][UTM]] for MacOS will be useful next, as a more approachable way to configure a QEMU setup.
+
+With this, create a new VM with ‘Virtualize’, using the downloaded ISO image as the boot volume. For the VM hardware, memory is set to 8192 MB, CPU cores to 8, with 64GB of storage (I believe all can be adjusted at a later date). A shared directory can also be added at this stage. Ensure ‘Open VM settings’ is checked at the end of UTM’s setup wizard, to make some additional edits before booting the VM. In the settings window that appears, check under ‘Drives’ that there is a ‘USB Drive’ with the ISO image. There should also be a VirtIO device available: go to this and change the Interface to NVMe. Make a note of the device name (a UUID). Today’s is ~9C3E1B3C-1CED-4373-ACC5-74F3212DFD31.qcow2~
+
+
+Other than changing the VirtIO drive device to NVMe, all the default settings of UTM should be fine here. What is really neat is that the equivalent QEMU command as it would be in the terminal can be exported from the QEMU pane. Here’s what today’s command looks like in its unabashed glory (line breaks added):
+#+begin_src shell
+  qemu-system-aarch64 \
+      -L /Applications/UTM.app/Contents/Resources/qemu \
+      -S \
+      -spice "unix=on,addr=/Users/paul/Library/Group Containers/WDNLXAD4W8.com.utmapp.UTM/530CA763-012C-45BC-BAE1-22356928A1A3.spice,disable-ticketing=on,image-compression=off,playback-compression=off,streaming-video=off,gl=off" \ 
+      -chardev spiceport,id=org.qemu.monitor.qmp,name=org.qemu.monitor.qmp.0 \
+      -mon chardev=org.qemu.monitor.qmp,mode=control \
+      -nodefaults \ 
+      -vga none \
+      -device virtio-net-pci,mac=66:B5:D4:73:42:90,netdev=net0 \
+      -netdev vmnet-shared,id=net0 \
+      -device virtio-ramfb \
+      -cpu host \
+      -smp cpus=8,sockets=1,cores=8,threads=1 \
+      -machine virt \
+      -accel hvf \
+      -drive if=pflash,format=raw,unit=0,file=/Applications/UTM.app/Contents/Resources/qemu/edk2-aarch64-code.fd,readonly=on \
+      -drive "if=pflash,unit=1,file=/Users/paul/Library/Containers/com.utmapp.UTM/Data/Documents/NixOS 23.05pre456191.utm/Data/efi_vars.fd" \
+      -m 8192 \
+      -device intel-hda \
+      -device hda-duplex \
+      -device nec-usb-xhci,id=usb-bus \
+      -device usb-tablet,bus=usb-bus.0 \
+      -device usb-mouse,bus=usb-bus.0 \
+      -device usb-kbd,bus=usb-bus.0 \
+      -device qemu-xhci,id=usb-controller-0 \
+      -chardev spicevmc,name=usbredir,id=usbredirchardev0 \
+      -device usb-redir,chardev=usbredirchardev0,id=usbredirdev0,bus=usb-controller-0.0 \
+       -chardev spicevmc,name=usbredir,id=usbredirchardev1 \
+       -device usb-redir,chardev=usbredirchardev1,id=usbredirdev1,bus=usb-controller-0.0 \
+       -chardev spicevmc,name=usbredir,id=usbredirchardev2 \
+       -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2,bus=usb-controller-0.0 \
+       -device usb-storage,drive=drive7CB81371-0C09-45EF-9581-6DC83F3AF3D9,removable=true,bootindex=0,bus=usb-bus.0 \
+       -drive if=none,media=cdrom,id=drive7CB81371-0C09-45EF-9581-6DC83F3AF3D9,file=/Users/paul/Devices/images/NixOS/nixos-minimal-new-kernel-23.05pre456191.b69883faca9-aarch64-linux.iso,readonly=on \
+       -device nvme,drive=drive9C3E1B3C-1CED-4373-ACC5-74F3212DFD31,serial=9C3E1B3C-1CED-4373-ACC5-74F3212DFD31,bootindex=1 \
+       -drive "if=none,media=disk,id=drive9C3E1B3C-1CED-4373-ACC5-74F3212DFD31,file=/Users/paul/Library/Containers/com.utmapp.UTM/Data/Documents/NixOS 23.05pre456191.utm/Data/9C3E1B3C-1CED-4373-ACC5-74F3212DFD31.qcow2,discard=unmap,detect-zeroes=unmap" \
+       -device virtio-serial \
+       -device virtserialport,chardev=vdagent,name=com.redhat.spice.0 \
+       -chardev spicevmc,id=vdagent,debug=0,name=vdagent \
+       -device virtserialport,chardev=charchannel1,id=channel1,name=org.spice-space.webdav.0 \
+       -chardev spiceport,name=org.spice-space.webdav.0,id=charchannel1 \
+       -name "NixOS 23.05pre456191" \
+       -uuid 530CA763-012C-45BC-BAE1-22356928A1A3 \
+       -device virtio-rng-pci
+#+end_src
+
+Man that’s a mouthful.
+
+But it lets us boot the VM and enter the NixOS Installer.
+
+
+* The Incantations
+Once in the NixOS installer, these are the commands thou shalt input (and really, it's just the instructions in the [[https://nixos.org/manual/nixos/stable/index.html#sec-installation][NixOS Manual]], assuming UEFI boot and NVMe, as stated [[https://nixos.wiki/wiki/NixOS_on_ARM][here]]).
+
+** A quick aside on DNS
+DNS does not work initially out of the box ~/etc/resolv.conf~ appears as
+#+begin_src conf
+  # Generated by resolvconf
+  nameserver 192.168.64.1
+  nameserver fe80::bcd0:74ff:fe72:9164%enp0s1
+  options edns0
+#+end_src
+
+and since there’s nothing responding at ‘.64.1, DNS will not work (unless perhaps we put something there..?)
+To overcome this, let’s edit the file and add some DNS servers (Cloudflare, Quad-8, and the local host at 192.162.1.172 running an Unbound recursive DNS). Replace ~resolv.conf~ with the below and try pinging a well-known domain (say, ~ping nixos.org~).
+#+begin_src conf
+  nameserver 192.168.1.172
+  options edns0
+
+  nameserver 1.1.1.1
+  options edns0
+	  
+  nameserver 9.9.9.9
+  options edns0
+#+end_src
+
+With DNS working again, the NixOS installer won’t complain when it tries to download derivations and other files for installation later.
+
+
+** Partitioning
+Now onto creating a drive partition (UEFI style & NVMe). The drive device to work on will be ~/dev/nvme0n1~ (or perhaps something similar; anyway, use this in place of ~/dev/sda~ in the NixOS manual). Ignore those messages about updating ~/etc/fstab~.
+
+#+begin_src bash
+  # enter sudo (no password set)
+  su sudo
+
+  # create GPT partition table for NVMe device (virtualised)
+  parted /dev/nvme0n1 -- mklabel gpt
+  # create ‘root’ partition in the 512MB to 8GB block region
+  parted /dev/nvme0n1 -- mkpart primary 512MB -8GB
+  # create a swap partition of 8GB (this may be unnessecary)
+  parted /dev/nvme0n1 -- mkpart primary linux-swap -8GB 100%
+  # finally, the ‘boot’ partition (ESP: EFI system partition) in the initial 512MB blocks region
+  parted /dev/nvme0n1 -- mkpart ESP fat32 1MB 512MB
+  parted /dev/nvme0n1 -- set 3 esp on
+  # add a label to the boot partition
+  mkfs.fat -F 32 -n boot /dev/nv
+#+end_src
+
+At this point, it may be satisfying to see the partitions referenced under ~/dev/disk/~
+These can all be nicely labelled as follows:
+#+begin_src bash
+  # the root (nixos) partition, p1
+  mkfs.ext4 -L nixos /dev/nvme0n1p1
+  # the swap partition, p2
+  mkswap -L swap /dev/nvme0n1p2
+  # the boot partition, p3
+  mkfs.fat -F 32 -n boot /dev/nvme0n1p3
+#+end_src
+
+Looking at ~/dev/disk/by-label~ should show each of the three disk partitions referenced by those useful labels, plus the ISO image (which we’ll dispose of later).
+
+The partitions will then need mounting to suitable directories:
+#+begin_src bash
+  mkdir -p /mnt/boot
+  mount /dev/disk/by-label/nixos /mnt
+  mount /dev/disk/by-label/boot /mnt/boot
+  swapon /dev/nvme0n1p2
+#+end_src
+
+** Installation
+With the disk partitions mounted, NixOS can configure itself to use those partitions:
+#+begin_src bash
+  nixos-generate-config --root /mnt
+#+end_src
+
+Now take a look at ~/mnt/etc/nixos/configuration.nix~ and make any useful edits for the initial system (and ~/mnt/etc/nixos/hardware-configuration.nix~, which is advised to leave as it, but might be desirable to change device paths to their ~by-label~ equivalents.
+
+Some elements which are probably worth including/uncommenting in ~configuration.nix~ are:
+#+begin_src nix
+  # ...
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # ...
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+  # ...
+  users.users.paul = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      emacs
+    ];
+    initialHashedPassword = "test";
+  };
+  # ...
+  environment.systemPackages = with pkgs; [
+    bat
+    fish
+    git
+    inetutils
+    ripgrep
+    vim
+    wget
+  ];
+  # ...
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  # ...
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  # ...
+  # DNS
+  networking.nameservers = [
+    "192.168.1.174"
+    "1.1.1.1"
+    "9.9.9.9"
+  ];
+  # ...
+  nix.settings = {
+    trusted-users = [ "paul" "root" ];
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+  system.copySystemConfiguration = true;
+#+end_src
+
+And then
+** Drum-roll
+#+begin_src bash
+  nixos-install
+#+end_src
+
+If all has gone well, many lines of “building ... .drv” should begin to appear.
+
+NixOS will ask for a root password to be set at the end. Then,
+installation finished!
+And reboot.
+Well, shut down first. And remove the installer ISO in UTM. Then boot up the VM again. Log in as root; user passwords can be changed from there.
+
+This is a good moment to confirm the IP address of the NixOS VM (today it is 192.168.64.9)
+
+
+* The keys, the secret
+To enable ssh login, passwordlessly, user SSH keys can be copied over to the VM with something like
+#+begin_src bash
+  ssh-copy-id -i ~/.ssh/id_ed25519.pub paul@192.168.64.9
+#+end_src
+
+
+* The Builders
+
+This is about enabling distributed builds on the VM, particularly so it can be used as a set of bootstraps for building Nix derivations which require a Linux environment, such as other VM’s. [[https://nixos.wiki/wiki/Distributed_build][The NixOS Wiki Manual Page]] is the basis for much of this; reference documentation can be found [[https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html][here]].
+
+To create a ssh key for the local root user (careful!), use ~ssh-keygen -t ed25519 -f .ssh/id_nix_build~, as the root user in the home directory.
+
+Then copy the key over to the VM. As long as the normal user (paul) is included in ~nix.settings.trusted-users~ in the ~configuration.nix~ file, that user should be able to handle distributed builds.
+
+Try something like:
+#+begin_src bash
+  nix build --impure \
+      --expr '(with import <nixpkgs> { system = "aarch64-linux"; }; runCommand "foo" {} "uname -a > $out")' \
+      --builders 'ssh://paul@nemo aarch64-linux'
+#+end_src
+
+If there are no errors, there should be a ~result~ file linking to the remotely built “foo” application in the Nix store. Have a look at its contents!
+
+Now for something more juicy.
+Try copying this [[cloning this: ][Flake]] and invoking a distributed build like so:
+#+begin_src bash
+  nix build .# --builders 'ssh://paul@nemo aarch64-linux'
+#+end_src
+
+And you might just have caused your first VM to have a baby VM!
+
+
+
+* Cross-compilation
+Enable this awesome feature with the following line in the ~configuration.nix~ file:
+#+begin_src nix
+  boot.binfmt.emulatedSystems = [ "wasm32-wasi" "x86_64-linux" ];
+#+end_src
+
+And try to build a package for a different system, e.g.:
+#+begin_src bash
+  nix-build '<nixpkgs>' -A hello --arg crossSystem '{ config = "x86_64-unknown-linux-gnu"; }'
+#+end_src
+
+Try running ~file~ against the build result (under wherever it lands in the nix store, then ~/bin/hello~).
+
+https://matthewbauer.us/blog/beginners-guide-to-cross.html
+
+
+** Configuration for Distributed Build Machines
+
+
+* The Inspiration
+** Other people’s work
+https://github.com/dustinlyons/nixos-config/
+https://github.com/Gabriella439/macos-builder
+https://www.haskellforall.com/2020/11/how-to-use-nixos-for-lightweight.html
+https://github.com/YorikSar/nixos-vm-on-macos/blob/master/flake.nix
+https://www.tweag.io/blog/2023-02-09-nixos-vm-on-macos/
+https://github.com/NixOS/nixpkgs/issues/108984
+https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/macos-builder.nix
+https://github.com/mitchellh/nixos-config
+
+
+** Official Documentation
+https://nixos.wiki/wiki/NixOS_on_ARM/UEFI
+
+** Links for Distributed Building
+https://nixos.org/manual/nix/unstable/advanced-topics/distributed-builds.html
+https://nixos.wiki/wiki/Nixos-rebuild
+
+
+
+#  LocalWords:  NixOS QEMU MacOS UTM 

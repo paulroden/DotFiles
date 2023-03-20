@@ -1,0 +1,212 @@
+{
+  "editor.fontFamily": "MonoLisa, 'SF Mono', 'SF Compact', 'FiraCode Nerd Font'",
+  "editor.fontLigatures": "'calt' on, 'liga' on, 'zero' off, 'ss02' off, 'ss03' off, 'ss04' on, 'ss06' off",
+  "editor.fontSize": 14,
+  "editor.fontWeight": "400",
+  "editor.tabSize": 2,
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.suggestSelection": "first",
+  "editor.bracketPairColorization.enabled": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.accessibilitySupport": "off",
+  "editor.inlineSuggest.enabled": true,
+  "editor.detectIndentation": false,
+  "editor.codeLens": false,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "explorer.confirmDragAndDrop": false,
+  "workbench.startupEditor": "none",
+  "workbench.reduceMotion": "on",
+  "terminal.integrated.fontFamily": "MonoLisa, 'SF Mono', 'SF Compact', 'FiraCode Nerd Font'",
+  "terminal.integrated.fontWeight": "400",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.tabs.location": "left",
+  "workbench.colorTheme": "chalice-color-theme-light",
+  "workbench.iconTheme": "chalice-icon-theme",
+  "chaliceIcons.showArrows": true,
+  "workbench.colorCustomizations": {
+    "[Tokyo City Darker]": {
+      "editor.background": "#11161d",
+      "sideBar.background": "#11161d"
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "[Tokyo City Darker]": {
+      "keywords": "#FFFC67",
+      "numbers": {
+        "foreground": "#F7768E"
+      },
+      "strings": "#b6c0c8",
+      "textMateRules": [
+        {
+          "scope": [
+            "storage.modifier"
+          ],
+          "settings": {
+            "fontStyle": "italic",
+            "foreground": "#f3df00"
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.string"
+          ],
+          "settings": {
+            "foreground": "#cfcfcf"
+          }
+        },
+        {
+          "scope": [
+            "storage.type.function"
+          ],
+          "settings": {
+            "foreground": "#fffc67"
+          }
+        },
+        {
+          "scope": [
+            "constant.language.boolean"
+          ],
+          "settings": {
+            "foreground": "#ffd667"
+          }
+        },
+        {
+          "scope": [
+            "support.constant"
+          ],
+          "settings": {
+            "foreground": "#0db9d7"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.comparison"
+          ],
+          "settings": {
+            "foreground": "#d8e2ec"
+          }
+        },
+        {
+          "scope": [
+            "entity.name.type"
+          ],
+          "settings": {
+            "foreground": "#7DCFFF"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.sigil"
+          ],
+          "settings": {
+            "foreground": "#0db9d7"
+          }
+        },
+        {
+          "scope": [
+            "constant.other"
+          ],
+          "settings": {
+            "foreground": "#df6e5a"
+          }
+        },
+        {
+          "scope": [
+            "keyword.todo"
+          ],
+          "settings": {
+            "foreground": "#cd3939d9",
+            "fontStyle": "italic bold"
+          }
+        },
+        {
+          "scope": [
+            "entity.other.attribute-name"
+          ],
+          "settings": {
+            "foreground": "#fffc67"
+          }
+        }
+      ]
+    }
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "[Tokyo City Darker]": {
+      "enabled": true
+    },
+    "rules": {
+      "*.mutable": {
+        "fontStyle": "bold"
+      }
+    }
+  },
+  "[rust]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "rust.all_features": true,
+  "rust.clippy_preference": "on",
+  "rust.rust-analyzer": {
+    "checkOnSave.command": "clippy",
+    "releaseTag": "nightly",
+    "path": null
+  },
+  "[haskell]": {
+    "editor.defaultFormatter": "haskell.haskell",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "manageHLS": "PATH",
+    "serverEnvironment": {
+      "GHCUP_INSTALL_BASE_PREFIX": "~/.ghcup/bin/"
+    },
+    "plugin.refineImports.codeLensOn": false,
+    "plugin.hlint.config.flags": [
+      {
+        "ignore": [
+          "Use void",
+          "Use newtype instead of data"
+        ]
+      }
+    ],
+    "plugin.tactics.codeActionsOn": true,
+    "plugin.tactics.codeLensOn": true
+  },
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "analysis.completeFunctionParens": true
+  },
+  "python.defaultInterpreterPath": "~/.nix-profile/bin/python",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "nix.enableLanguageServer": true,
+  "git.confirmSync": false,
+  "githubPullRequests.createOnPublishBranch": "never",
+  "cSpell.language": "en-GB",
+  "cSpell.userWords": [
+    "Assem"
+  ],
+  "cSpell.ignoreWords": [
+    "webby",
+    "esque",
+    "Shpadoinkle"
+  ],
+  "telemetry.telemetryLevel": "error",
+  "redhat.telemetry.enabled": false,
+  "terminal.integrated.defaultProfile.osx": "fish",
+  "git.autofetch": true
+}
