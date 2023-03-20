@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs, ... }:
+{ config, lib, nixpkgs, pkgs,  ... }:
 {
   services.nix-daemon.enable = true;
   
@@ -8,6 +8,10 @@
     settings = {
       trusted-users = [ "paul" "root" ];
     };
+    package = pkgs.nixFlakes;
+    extraOptions =
+      lib.optionalString (config.nix.package == pkgs.nixFlakes)
+        "experimental-features = nix-command flakes";
 #    configureBuildUsers = true;
 #    nrBuildUsers = 32;
     distributedBuilds = true;
