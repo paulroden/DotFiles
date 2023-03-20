@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: equiv-step
-# --
-=⟨$1⟩
-  $0

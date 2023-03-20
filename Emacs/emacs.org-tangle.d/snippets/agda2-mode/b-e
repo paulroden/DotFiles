@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: proof clause: begin-end
-# --
-  begin
-    $0
-  end
