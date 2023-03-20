@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Module Header
+# key: mw
+# --
+module $1
+  (
+  )
+  where
+  

@@ -1,0 +1,17 @@
+.cache/
+auto-save-list/
+eln-cache/
+elpa/
+elpy/
+eshell/
+straight/
+transient/
+url/
+var/
+history
+places
+projects
+recentf
+*.elc
+.lsp-session*
+.mc-lists.*

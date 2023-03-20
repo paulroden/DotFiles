@@ -1,0 +1,35 @@
+* Default Workspace
+** DotFiles
+ - path :: ~/DotFiles
+** nix-darwin-emacs
+ - path :: ~/Projects/nix-darwin-emacs
+* Agda Learning
+** Programming & Proving
+ - path :: ~/Projects/agda/programming-and-proving
+** Peano ℕ
+ - path :: ~/Projects/agda/peano
+** agda-mode-stuff
+ - path :: ~/Projects/agda/agda-mode-solo
+* Haskell
+** artificial-regex
+ - path :: ~/Projects/haskell/ArtificialLabsTest/artificial-regex
+** artificial-regex-play
+ - path :: ~/Projects/haskell/ArtificialLabsTest/artificial-regex-play
+** megaparsec-tutorial
+ - path :: ~/Projects/haskell/megaparsec-tutorial
+** optex
+ - path :: ~/Projects/haskell/optex
+** find-succ-fail
+ - path :: ~/Projects/haskell/find-succ-fail
+** monadic-parser-combinators
+ - path :: ~/Projects/haskell/monadic-parser-combinators
+** parsing-arithmetic-with-monads
+ - path :: ~/Projects/haskell/parsing-arithmetic-with-monads
+** rosie
+ - path :: ~/Projects/haskell/rosie
+* Homepage
+** colorado
+ - path :: ~/Projects/colorado
+* Rust
+** gign
+ - path :: ~/Projects/rust/gign

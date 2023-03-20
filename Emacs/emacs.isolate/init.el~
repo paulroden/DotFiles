@@ -1,0 +1,3 @@
+(use-package which-key
+  :commands which-key-mode
+  :ensure t)

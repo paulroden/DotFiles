@@ -1,0 +1,118 @@
+#+title: It’s Not No Init-file Template
+#+author: Paul Roden Henderson
+#+startup: overview
+
+* How to think about this configuration
+This is an attempt to describe an Emacs configuration in a structured way. My Emacs configuration previously existed as a literate Org file, inspired by the beautiful, [[https://blog.sumtypeofway.com/posts/emacs-config.html][expertly-crafted configuration]] of [[https://github.com/patrickt/emacs][Patrick Thomson]], [[https://www.i3s.unice.fr/~malapert/emacs_orgmode.html][among]] [[https://github.com/alhassy/emacs.d][others]]. However, this approach veers off to a tangent and tries to (ab)use sacred software design principles such as /separation of concerns/, /composition/, and /type-driven design/. This serves one single purpose: help my severely limited mind cope with the complexity of a fully-configurable, infinitely-customisable text editor (arguably, almost an [[https://www.johndcook.com/blog/2019/07/03/journalistic-stunt-with-emacs/][operating system]]). If Emacs is [[https://blog.sumtypeofway.com/posts/emacs-config.html][“agar for brain worms]]”, this is a set of petri-dishes comprising the various worm cultures.
+
+** Separation
+In its existence as a text editor superior, Emacs has to accomplish a number of different things, most of which can be considered as either dependent on each other or orthogonal. buffers; to render text and enable movement throughout it. It also 
+** Composition
+It should be possible to remove or replace any component and not affect the behaviour of other components, other than those which /depend/ on that component. Even in such cases, the coupling should be as loose as possible (e.g. if the theme is changed, some UI element should not become invisible).  Replacing a component with an equivalent should not affect other components (e.g. if I swap [[https://github.com/jaypei/emacs-neotree][NeoTree]] for [[https://github.com/Alexander-Miller/treemacs][Treemacs]], as my sidebar-file-browser, nothing else changes). Thanks to the nature of (e)lisp and Emacs’ architecture, this is generally the case.
+** Types
+Following from the ideas discussed above, the universe of an Emacs configuration can be roughly considered as a type system...
+ + Building and running Emacs itself (e.g. compile & install script, via ~make~, ~homebrew~, or ~nix~) ∷ *Build*
+   + Configuring, installing, and managing Emacs packages and  ∷ *Environment*
+ + Providing elements used in running Emacs, such as fonts, UI elements ∷ 
+ + 
+
+
+
+ 
+* Components
+** [[file:./environment/][Environment]]
+This directory contains all the basic elements for /running/ Emacs.
+<Q?> loading should happen in ~early-init~? Does it need spitting in two: 'basic environment' and 'working environment'?
+**** Build Emacs
+/See [[Utilities]]/ ...
+**** Environmental Variables from Outside Emacs
+***** (E)lisp Environment
+Common Lisp, convenience libraries such as Dash
+~cl-lib~
+~dash~
+~s~
+byte compilation (~comp~, ~compile~)
+
+***** The base environment for Emacs
+***** Packages
+~use-package~ – built in since Emacs 29
+use-package-ensure-system-package – similarly build-in since Emacs 29; use ~nix~ as system package manager.
+~straight.el~ - allows packages to be managed as recipes, including such from version control systems; enabled as ‘opt-in’ rather than ‘opt-out’ (~straight-use-package-by-default~ not set).
+
+**** Workspace
+How Emacs starts-up
+Saving files, state, projects and so on
+~project.el~
+logging and keystrokes
+~recentf~
+macros?
+~autorevert~
+undo, ~vundo~
+
+Does completion go here? Vertico, Consult, Marginalia? 
+
+“Behaviour” vs. “UI”
+If something effects how Emacs behaves even in when in a headless mode, it’s /behaviour/.
+If the effect of something changes interaction with the /user/ (e.g. how text input works, it’s /UI/.
+An example would be ~delete-selection-mode~, which alters the behaviour of yanking text over a marked region (or ‘pasting over a text selection’ in lay terms): this only has meaning if a human is yanking said text.
+** [[file:./typography][Typography]]
+
+** UI
+The mode line, elements to click and show files.
+Treemacs / Neotree
+Popper
+Shackle
+
+
+** Integrations
+Tools that are commonly used /through/ Emacs, e.g. Git (via Magit), a terminal emulator (via vterm).
+~deadgrep~
+Also TRAMP.
+
+** Editing
+How we move around text files and edit them.
+~agda-input~ will go here, but ~Agda-mode~ will come later...
+anzu
+evil
+electric quotes
+titlecase
+does Org-mode go in here? LaTeX? Markdown?
+Snippets, ~yasnippet~
+
+** Languages
+Packages for editing files in languages (other than Emacs’ native Elisp). Include language servers and linters.
+~agda2-mode~ (but ~agda-input~ goes earlier)
+
+
+** [[file:./util/][Utilities]]
+Convenience functions to use with Emacs.
+<Q?> loading should happen in ~early-init~?
+Also (maybe) things which are not in Emacs which help it to work. Will probably put the build script in here.
+
+Emacs can be built with my [[https://github.com/paulroden/nix-darwin-emacs][Nix Flake]], which builds Emacs from the Savannah repo, pinned to a specific revision hash (work in progress).
+Add this version of the Emacs overlay to Nix ~home-manager~ and 
+
+
+* The view of this configuration as if it were a diorama 
+
+* Notes of things learned along the way
+** Notes on Emacs 29|30
+With the release of Emacs 29, the following features have become part of Emacs’ core ([[https://blog.phundrak.com/emacs-29-what-can-we-expect/][hat-tip]]):
+  - support for alternative ~init~ directory via ~emacs --init-directory~
+  - ~use-package~
+  - ~use-package-ensure-system-package~
+  - ~eglot~
+ - ~tree-sitter~
+   - emoji input method 😃
+
+     (try ~M-x list-packages~ to see what’s available from /built-in/, /gnu/, /nongnu/ or otherwise.)
+   
+     
+ 
+** Recall recent command history in Emacs
+Is as simple as ~M-x view-lossage~ (or ~c-h l~)
+
+
+* For future consideration
+
+https://github.com/radian-software/apheleia - for formatting all the things
