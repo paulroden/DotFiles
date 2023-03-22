@@ -73,8 +73,7 @@
           inherit system;
           inputs = { inherit darwin home-manager nixpkgs; };
           modules = [
-            ./Nix/Devices/Asara.nix
-            ./Nix/Impure/homebrew.nix
+            ./Nix/Devices/Asara
           ];
         };
       };

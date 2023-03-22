@@ -17,6 +17,7 @@
       "acorn"
       "apparency"
       "discord"
+      "moom"
       "nova"
       "raycast"
       "remarkable"
@@ -41,5 +42,13 @@
       "font-spectral"
       "font-ysabeau"
     ];
+    # Mac App Store Apps (via https://github.com/mas-cli/mas)
+    masApps = {
+      "Chambers Dictionary" = 500583211;
+      "Chambers Thesaurus" = 498829958;
+      "Dictionaries" = 1380563956;
+      "PDF Viewer" = 1120099014;
+      "Pastel" = 413897608;
+    };
   };
 }

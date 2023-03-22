@@ -1,5 +1,7 @@
 { config, lib, nixpkgs, pkgs,  ... }:
 {
+  imports = [ ./Impure/homebrew.nix ];
+  
   services.nix-daemon.enable = true;
   
   programs.zsh.enable = true;
@@ -12,8 +14,8 @@
     extraOptions =
       lib.optionalString (config.nix.package == pkgs.nixFlakes)
         "experimental-features = nix-command flakes";
-#    configureBuildUsers = true;
-#    nrBuildUsers = 32;
+    configureBuildUsers = true;
+    nrBuildUsers = 32;
     distributedBuilds = true;
     buildMachines = [
       {
@@ -54,20 +56,30 @@
   fonts = {
     fontDir.enable = true;
     fonts = [
+      pkgs.cardo
+      pkgs.charis-sil
+      pkgs.crimson-pro
+      pkgs.fira
       pkgs.fira-code
       pkgs.fira-code-symbols
+      pkgs.font-awesome
+      pkgs.gyre-fonts
       pkgs.hasklig
       pkgs.ibm-plex
+      pkgs.inriafonts
       pkgs.iosevka-comfy.comfy
       pkgs.iosevka-comfy.comfy-fixed
       pkgs.iosevka-comfy.comfy-duo
       pkgs.jetbrains-mono
       pkgs.julia-mono
+      pkgs.kanji-stroke-order-font
       pkgs.liberation_ttf
+      pkgs.maple-mono
       pkgs.merriweather
       pkgs.merriweather-sans
       pkgs.mononoki
       pkgs.mplus-outline-fonts.githubRelease
+      pkgs.nacelle
       pkgs.noto-fonts
       pkgs.noto-fonts-cjk
       pkgs.noto-fonts-emoji
@@ -75,7 +87,18 @@
       pkgs.sarasa-gothic
       pkgs.source-code-pro
       pkgs.source-han-mono
+      pkgs.source-han-sans
+      pkgs.source-han-serif
+      pkgs.source-sans 
+      pkgs.sorts-mill-goudy
+      pkgs.stix-two
       pkgs.weather-icons
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "Hasklig"
+        ];
+      })
     ];
   };
   
