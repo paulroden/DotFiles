@@ -9,7 +9,6 @@
     "/System/Applications/Maps.app/"
     "/System/Applications/Photos.app/"
     "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/"  # this one is super-special!
-    "${pkgs.discord}/Applications/Discord.app/"
     "/Applications/PDF Viewer.app/"
   ];
   others = [
