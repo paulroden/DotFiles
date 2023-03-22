@@ -54,6 +54,7 @@ pkgs:
   pkgs.libgit2
   pkgs.lua53Packages.digestif
   pkgs.mas
+  pkgs.magic-wormhole-rs
   pkgs.ncurses
   pkgs.neofetch
   pkgs.neovim
@@ -67,8 +68,14 @@ pkgs:
   # pkgs.ormolu
   pkgs.ouch
   pkgs.pandoc
-  (pkgs.python311.withPackages(
-    ps: with ps; [ numpy ipython pandas requests ]))
+  (pkgs.python311.withPackages(p: [
+    p.httpx
+    p.ipython
+    p.numpy
+    p.pandas
+  #  p.polars  --currently broken on Darwin and aarch64 linux
+    p.pydantic
+  ]))
   pkgs.procs
   pkgs.qemu
   pkgs.racket
@@ -78,6 +85,7 @@ pkgs:
   pkgs.sd
   pkgs.shfmt
   pkgs.silver-searcher
+  pkgs.slack  # UNFREE
   pkgs.socat
   pkgs.starship
   pkgs.texlive.combined.scheme-full
@@ -86,6 +94,7 @@ pkgs:
   pkgs.tree-sitter
   pkgs.watchexec
   pkgs.wget
+  pkgs.xsv
   pkgs.yq
   pkgs.zlib
   pkgs.zoom-us  # UNFREE
@@ -94,7 +103,4 @@ pkgs:
   pkgs.zsh-autocomplete
   pkgs.zsh-completions
   pkgs.zstd
-  # fonts
-  pkgs.gyre-fonts
-  # pkgs.noto-fonts
 ]
