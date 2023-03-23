@@ -88,6 +88,7 @@ pkgs:
   pkgs.slack  # UNFREE
   pkgs.socat
   pkgs.starship
+  pkgs.teams  # UNFR€€
   pkgs.texlive.combined.scheme-full
   pkgs.tldr
   pkgs.tmux
