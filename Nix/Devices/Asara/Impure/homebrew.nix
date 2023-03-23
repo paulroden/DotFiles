@@ -18,6 +18,7 @@
       "apparency"
       "discord"
       "moom"
+      "netnewswire"
       "nova"
       "raycast"
       "remarkable"

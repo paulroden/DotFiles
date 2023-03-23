@@ -9,7 +9,9 @@
     "/System/Applications/Maps.app/"
     "/System/Applications/Photos.app/"
     "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/"  # this one is super-special!
+    "/Applications/NetNewsWire.app/"
     "/Applications/PDF Viewer.app/"
+    "${pkgs.emacsGit}/Applications/Emacs.app/"
   ];
   others = [
     {
