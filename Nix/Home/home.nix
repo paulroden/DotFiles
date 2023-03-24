@@ -6,20 +6,6 @@ let
 in
 {
   imports = [ ./dock-items.nix ];
-  programs = {
-    home-manager.enable = true;
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-    git = import ./programs/git.nix { inherit config; };
-    fish = import ./programs/fish.nix { inherit pkgs; };
-    zsh = import ./programs/zsh.nix { inherit pkgs; };
-    starship = import ./programs/starship.nix;
-    kitty = import ./programs/kitty { inherit config; };
-    bat = import ./programs/bat;
-    vscode = import ./programs/vscode { inherit pkgs; };
-  };
   home = {
     stateVersion = "22.11";
     inherit username;
@@ -85,6 +71,19 @@ in
     # kitticon: https://github.com/hristost/kitty-alternative-icon
     file.".config/kitty/kitty.app.icns".source = ./programs/kitty/kitty.app.icns;
   };
-  
+  programs = {
+    home-manager.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    git = import ./programs/git.nix { inherit config; };
+    fish = import ./programs/fish { inherit pkgs; };
+    zsh = import ./programs/zsh.nix { inherit pkgs; };
+    starship = import ./programs/starship.nix;
+    kitty = import ./programs/kitty { inherit config; };
+    bat = import ./programs/bat;
+    vscode = import ./programs/vscode { inherit pkgs; };
+  };
   local.dock = import ./programs/dock.nix { inherit config pkgs; };
 }
