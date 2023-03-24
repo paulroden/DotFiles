@@ -2,7 +2,15 @@
 {
   imports = [ ./Impure/homebrew.nix ];
   
-  services.nix-daemon.enable = true;
+  services = {
+    nix-daemon.enable = true;
+
+    emacs = {
+      enable = true;
+      package = pkgs.emacsGit;
+      exec = "${pkgs.emacsGit}/bin/emacs --bg-daemon=default";
+    };
+  };
   
   programs.zsh.enable = true;
 
