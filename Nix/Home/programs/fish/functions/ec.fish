@@ -30,7 +30,7 @@ function ec
     set cmd \
     "emacsclient \\
       --alternate-editor=$ALTERNATE_EDITOR \\
-      --socket-name=$EMACS_SOCKET_NAME \\
+      --socket-name=/tmp/emacs(id -u)/$EMACS_SOCKET_NAME \\
       --create-frame \\
       --eval \"(progn (load-file \\\"~/.emacs.d/init.el\\\") (find-file \\\"$file_path\\\")) \" "
 

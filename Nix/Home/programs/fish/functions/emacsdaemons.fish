@@ -28,7 +28,7 @@ function emacsdaemons
     end
 
     
-    #if '--new' flag is passed in, create a new daemon process named by $argv[1]
+    # if '--new' flag is passed in, create a new daemon process named by $argv[1]
     if set -q _flag_new
         if not set -q SOCKET_NAME
             echo "Error: no socket name provided.\n    Usage: `emacsdaemons --new SOCKET_NAME`" 1>&2
@@ -38,8 +38,8 @@ function emacsdaemons
             echo "Emacs daemon '$SOCKET_NAME' is running."
         else
             echo "Starting Emacs daemon '$SOCKET_NAME'..."
-            set EMACS_BIN (dirname (readlink (which emacs)))/../Applications/Emacs.app/Contents/MacOS/Emacs
-            $EMACS_BIN --daemon=$SOCKET_NAME
+            # set EMACS_BIN (dirname (readlink (which emacs)))/../Applications/Emacs.app/Contents/MacOS/Emacs   # see note at extant_emacs_daemons
+	    emacs --daemon=$SOCKET_NAME
         end
     # no flags are passed; just list the currently existing daemon names
     else
@@ -55,10 +55,12 @@ function get_emacs_daemon_pid
 end
 
 # Print any current running Emacs daemon sockets
-# (These can be found as files in the Emacs user temp' directory).
+# (These can be found as files in the Emacs user temp' directory:
+#   /tmp/emacs{user-id}/ if invoked with `emacs`; $TMPDIR instead of /tmp if invoked with
+#   .../Applications/Emacs.app/Contents/MacOS/Emacs, for some reason).
 # If Emacs is not running, the directory may not exist, so return nothing & no error.
 function extant_emacs_daemons
-    ls -p $TMPDIR/emacs(id -u)
+    ls -p /tmp/emacs(id -u)
     return 0
 end
 
