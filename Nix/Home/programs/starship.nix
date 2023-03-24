@@ -2,11 +2,11 @@
   enable = true;
   settings = {
     shell = {
-      fish_indicator = "􁖐︎ ";
-      zsh_indicator = "􀀶 ";
+      fish_indicator = "◉";
+      zsh_indicator = "ⓩ";
       powershell_indicator = "_ ";
       unknown_indicator = "¿sh? ";
-      style = "fg:bold yellow";
+      style = "fg:cyan";
       disabled = false;
     };
     hostname = {
