@@ -18,8 +18,6 @@ in
       HOMEBREW_REPOSITORY = homebrewRoot;
       HOMEBREW_PREFIX = homebrewRoot;
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
-      MANPATH = "${homebrewRoot}/share/man:\${MANPATH}";
-      INFOPATH = "${homebrewRoot}/share/info:\${INFOPATH}";
       # emacs-vterm ref
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
       # hack to clear the PATH inherited from the system environment
@@ -30,7 +28,6 @@ in
       "${config.home.profileDirectory}/bin"
       "/run/current-system/sw/bin/"
       "${homeDirectory}/.cargo/bin"
-#      "/opt/homebrew/opt/llvm@12/bin"
       "${homeDirectory}/.cabal/bin"
       "${homeDirectory}/.ghcup/bin"
       "/nix/var/nix/profiles/default/bin"
