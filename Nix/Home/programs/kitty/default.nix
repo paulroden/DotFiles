@@ -12,6 +12,9 @@
     enable_audio_bell = false;
     update_check_interval = 0;
     window_padding_width = 10;
+    remember_window_size = "yes";
+    initial_window_width = "800";  # c => 'cells', rather than pixels
+    initial_window_height = "480";
     cursor_shape = "beam";
     tab_bar_edge = "top";
     tab_title_max_length = 20;
@@ -26,6 +29,7 @@
     editor = "vim";
     paste_actions = "quote-urls-at-prompt";
     inactive_text_alpha = "0.67";
+    confirm_os_window_close = -1;
     macos_titlebar_color = "dark";
     macos_colorspace = "displayp3";
     macos_option_as_alt = "yes";
