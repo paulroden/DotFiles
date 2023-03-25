@@ -23,6 +23,10 @@
       (when (file-exists-p fish-path)
         (setq shell-file-name fish-path))))
 
+;; Location of `emacs-vterm', including dynamic loading library
+;; we compile this as a Nix derivation and export the result path to an env variable
+(eval-and-compile
+  (defconst vterm-load-path (getenv "EMACS_VTERM_PATH")))
 
 ;; Get environment variables as per the shell.
 ;; See https://github.com/d12frosted/homebrew-emacs-plus#injected-path for more.
@@ -32,15 +36,14 @@
   :init
   ;; list all the environment variables to carry over to here
   (setq exec-path-from-shell-variables
-        '("PATH"
-          "MANPATH"
+        '("HOMEBREW_PREFIX"
           "INFOPATH"
           "LANG"
           "LSCOLORS"
-          "HOMEBREW_PREFIX"
-          "PYENV_ROOT"
+          "MANPATH"
+          "SSH_AGENT_PID"
           "SSH_AUTH_SOCK"
-          "SSH_AGENT_PID"))
+	  "PATH"))
   :config
   (exec-path-from-shell-initialize))
 
