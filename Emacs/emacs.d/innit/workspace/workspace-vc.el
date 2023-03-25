@@ -9,7 +9,7 @@
 
 ;;; Autoreversion -- this is worth enabling as the default
 (use-package autorevert
-  :blackout (auto-revert-mode . " 􀖊")
+;;  :blackout (auto-revert-mode . " 􀖊")
   :config
   (setq global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1))

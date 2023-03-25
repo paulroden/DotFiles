@@ -11,7 +11,7 @@
 
 (use-package anzu
   :straight t
-  :blackout " 杏"
+;;  :blackout " 杏"
   :bind (("M-%" . #'anzu-query-replace)
          ("C-M-%" . #'anzu-query-replace-regexp))
   :config

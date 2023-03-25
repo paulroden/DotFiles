@@ -183,7 +183,7 @@
 ;; taken from https://github.com/jwiegley/dot-emacs/blob/54ffb572f10e5a9aa46e8ca2acba9a14d31fae10/init.el#L798
 (use-package company
   :defer 5
-  :blackout t
+;;  :blackout t
   :commands (company-mode company-indent-or-complete-common)
   :init
   :config

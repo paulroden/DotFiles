@@ -83,7 +83,7 @@
 ;; Inspired by https://ianyepan.github.io/posts/emacs-git-gutter/
 (use-package git-gutter2
   :straight (:type git :host github :repo "syohex/emacs-git-gutter2")
-  :blackout t
+;;  :blackout t
   :custom
   (git-gutter2-update-interval 0.02)
   (git-gutter2-modified-sign " ")

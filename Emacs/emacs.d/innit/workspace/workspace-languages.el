@@ -59,7 +59,7 @@
 ;;; Flycheck: remove the lint from between the economy class seats
 (use-package flycheck
   :straight t
-  :blackout " 􀷰"
+;;  :blackout " 􀷰"
   :defines flycheck-define-checker
   :custom (flycheck-display-errors-delay 0.2)
   :init (global-flycheck-mode))
@@ -67,7 +67,7 @@
 
 ;;; ElDoc
 (use-package eldoc
-  :blackout " 􀈿"
+;;  :blackout " 􀈿"
   :hook ((c-mode-common emacs-lisp-mode) . eldoc-mode))
 
 
@@ -96,7 +96,7 @@
 ;;; Snippets - just small fragments of language
 (use-package yasnippet
   :straight t
-  :blackout (yas-minor-mode . " 􁇔")
+;;  :blackout (yas-minor-mode . " 􁇔")
   :custom (yas-snippet-dirs '("~/DotFiles/Emacs/snippets/"))
   :hook ((text-mode
           prog-mode
@@ -152,7 +152,7 @@
 
 (use-package haskell-snippets
   :straight t
-  :blackout t
+;;  :blackout t
   :defer
   :after (haskell-mode yasnippet))
 
@@ -279,8 +279,8 @@
 ;;; Shells 🐚
 ;; Fish
 (use-package fish-mode
-  :straight t
-  :blackout "􁖐︎")
+  :straight t)
+;;  :blackout "􁖐︎")
 ;; the other ones (Bourne-compatible)
 (use-package sh-script
   :mode
@@ -338,7 +338,7 @@
 ;; If rainbows are the language of colours, this can go here
 (use-package rainbow-mode
   :straight t
-  :blackout " 􀇗"
+;;  :blackout " 􀇗"
   :hook (conf-mode
          prog-mode
          text-mode))
