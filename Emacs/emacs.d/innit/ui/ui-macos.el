@@ -9,10 +9,13 @@
 
 
 ;; Clean up chrome (maybe not only MacOS)
-(when (window-system)
-  (progn
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1)))
+;; (when (window-system)
+;;   (progn
+;;     (tool-bar-mode -1)
+;;     (scroll-bar-mode -1)))
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 
 ;; Show a little proxy item in the title bar.
 (setq ns-use-proxy-icon t)
