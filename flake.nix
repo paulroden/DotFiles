@@ -71,9 +71,6 @@
           darwin-emacs-packages.overlays.package
           nix-your-shell.overlays.default
           soft-serve.overlays.default
-          # (self: super: {
-          #   emacs-vterm = soft-serve.packages.${system}.emacs-vterm;
-          # })
         ];
         config.allowUnfree = true;
       };
