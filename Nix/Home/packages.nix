@@ -20,6 +20,7 @@ pkgs:
   pkgs.direnv
   pkgs.dockutil
   pkgs.du-dust
+  pkgs.emacs-vterm
   pkgs.emacsGit
   pkgs.exa
   pkgs.exiftool

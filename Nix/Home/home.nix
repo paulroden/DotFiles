@@ -20,6 +20,8 @@ in
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
       MANPATH = "${homebrewRoot}/share/man:\${MANPATH}";
       INFOPATH = "${homebrewRoot}/share/info:\${INFOPATH}";
+      # emacs-vterm ref
+      EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };

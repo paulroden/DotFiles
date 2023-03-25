@@ -6,7 +6,7 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      url = "github:NixOS/nixpkgs/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd";  # nixpkgs-unstable
     };
 
     darwin = {
@@ -26,6 +26,11 @@
 
     darwin-emacs-packages = {
       url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    soft-serve = {
+      url = "github:paulroden/soft-serve";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   
@@ -54,6 +59,7 @@
     , darwin-emacs-packages
     , haskell-nix
     , nix-your-shell
+    , soft-serve
     , ...
     }:
     let
@@ -64,14 +70,18 @@
           darwin-emacs.overlays.emacs
           darwin-emacs-packages.overlays.package
           nix-your-shell.overlays.default
+          soft-serve.overlays.default
+          # (self: super: {
+          #   emacs-vterm = soft-serve.packages.${system}.emacs-vterm;
+          # })
         ];
         config.allowUnfree = true;
       };
     in {
       darwinConfigurations = {
         "Asara" = darwin.lib.darwinSystem {
-          inherit system;
-          inputs = { inherit darwin home-manager nixpkgs; };
+          inherit pkgs system;
+          inputs = { inherit darwin home-manager nixpkgs pkgs; };
           modules = [
             ./Nix/Devices/Asara
           ];
