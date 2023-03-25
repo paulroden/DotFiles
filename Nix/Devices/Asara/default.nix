@@ -8,7 +8,6 @@
     emacs = {
       enable = true;
       package = pkgs.emacsGit;
-      exec = "${pkgs.emacsGit}/bin/emacs --bg-daemon=default";
     };
   };
   

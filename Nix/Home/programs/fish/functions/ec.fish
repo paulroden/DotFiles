@@ -20,8 +20,8 @@ function ec
     set -q ALTERNATE_EDITOR; or set ALTERNATE_EDITOR  "\"\"";
 
     # If $EMAC_SOCKET_NAME is set in the environment, use that, otherwise
-    # use "default" as the Emacs daemon's socket name
-    set -q EMACS_SOCKET_NAME; or set EMACS_SOCKET_NAME "default";
+    # use "server" as the daemon's socket name (per `emacs --fg-daemon`)
+    set -q EMACS_SOCKET_NAME; or set EMACS_SOCKET_NAME "server";
 
     # Compose a command to run as a background task is below.
     # note: the `--eval' statement ensures that emacs' init is loaded
