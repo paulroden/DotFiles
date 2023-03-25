@@ -60,7 +60,7 @@ end
 #   .../Applications/Emacs.app/Contents/MacOS/Emacs, for some reason).
 # If Emacs is not running, the directory may not exist, so return nothing & no error.
 function extant_emacs_daemons
-    ls -p /tmp/emacs(id -u)
+    ls -p /tmp/emacs(id -u) 2>/dev/null 
     return 0
 end
 
