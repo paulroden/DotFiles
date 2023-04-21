@@ -31,7 +31,6 @@
 ;; Get environment variables as per the shell.
 ;; See https://github.com/d12frosted/homebrew-emacs-plus#injected-path for more.
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
   :straight t
   :init
   ;; list all the environment variables to carry over to here
