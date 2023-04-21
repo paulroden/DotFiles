@@ -13,8 +13,8 @@
     update_check_interval = 0;
     window_padding_width = 10;
     remember_window_size = "yes";
-    initial_window_width = "800";  # c => 'cells', rather than pixels
-    initial_window_height = "480";
+    initial_window_width = "80";  # c => 'cells', rather than pixels
+    initial_window_height = "48";
     cursor_shape = "beam";
     tab_bar_edge = "top";
     tab_title_max_length = 20;
