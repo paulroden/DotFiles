@@ -8,8 +8,6 @@
 
 (load "~/DotFiles/Emacs/emacs.d/innit/innit")
 
-
-
 (provide 'init)
 ;;; init.el ends here
 ;;; … and anything appended below this line should be carefully moved elsewhere
