@@ -5,7 +5,12 @@
 function emacsdaemons
     argparse 'new=?' 'kill=?' -- $argv
 
-    set SOCKET_NAME $argv[1]
+    if set -q argv[1];
+	set SOCKET_NAME $argv[1]
+    else
+	# if nothing entered for the socket name, fall back to Emacs' default
+	set SOCKET_NAME "server"
+    end
     
     if set -q _flag_kill
         if not set -q SOCKET_NAME
