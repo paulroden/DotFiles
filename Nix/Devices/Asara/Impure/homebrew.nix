@@ -24,6 +24,7 @@
       "remarkable"
       "suspicious-package"
       "syntax-highlight"
+      "MonitorControl"
       # fonts from `homebrew-cask-fonts`
       "font-cormorant"
       "font-eb-garamond"
