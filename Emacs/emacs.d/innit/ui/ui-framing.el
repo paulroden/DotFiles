@@ -61,15 +61,17 @@
         ("C-x t d"   . treemacs-select-directory)
         ("C-x t B"   . treemacs-bookmark)
         ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag))
+        ("C-x t M-t" . treemacs-find-tag)
+	("C-x t e"   . treemacs-edit-workspaces))
   :custom
   (treemacs-persist-file "~/DotFiles/Emacs/tree/treemacs-persist")
   (treemacs-width 30)
   (treemacs-no-png-images t)
   (treemacs-collapse-dirs 0)
   (treemacs-follow-mode t)
+  (treemacs-project-follow-mode t)
   (treemacs-filewatch-mode t)
-  (treemacs-fringe-indicator-mode 'always)
+  (treemacs-fringe-indicator-mode only-when-focused)
   :custom-face
   (treemacs-root-face ((t (:underline nil :bold t :height 1.0)))))
 
@@ -83,7 +85,7 @@
 ;; Inspired by https://ianyepan.github.io/posts/emacs-git-gutter/
 (use-package git-gutter2
   :straight (:type git :host github :repo "syohex/emacs-git-gutter2")
-;;  :blackout t
+  :demand t
   :custom
   (git-gutter2-update-interval 0.02)
   (git-gutter2-modified-sign " ")
@@ -93,7 +95,8 @@
   (git-gutter2-modified ((t (:background "#f7dc66"))))
   (git-gutter2-added ((t (:background "#2f9961"))))
   (git-gutter2-deleted ((t (:background "#f1184c"))))
-  :hook ((prog-mode org-mode) . git-gutter2-mode))
+  :config
+  (global-git-gutter2-mode +1))
 
 ;;; Olivetti for the writer's block
 (use-package olivetti
