@@ -5,6 +5,8 @@
   userEmail = "git@paulroden.net";
   aliases = {
     amend = ''commit --amend --no-edit'';
+    st    = ''status'';
+    cm    = ''commit -m'';
     lg1   = ''log --graph --decorate --all --oneline'';
     lg2   = ''log --graph
                   --abbrev-commit
