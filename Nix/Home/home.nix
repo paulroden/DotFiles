@@ -20,6 +20,10 @@ in
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
       # emacs-vterm ref
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
+      # linking libiconv from clang seems to be a pervasive issue on MacOS with aarch...
+      LIBRARY_PATH="$LIBRARY_PATH:${pkgs.libiconv}/lib";
+      CPPFLAGS="-L${pkgs.libiconv}/include";
+      LDFLAGS="-L${pkgs.libiconv}/lib";
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };
