@@ -221,6 +221,10 @@
           (python-ts-mode . eglot-ensure))
   :custom (python-indent-offset 4))
 
+;; Poetry for Python
+(use-package poetry
+ :straight t)
+
 ;;; C & C++
 ;; TODO: c++-ts-mode currently causes some confusion with tree sitter ('c++' or 'cpp'?)
 ;;       come back to this at a later date... (2023-02-03)
