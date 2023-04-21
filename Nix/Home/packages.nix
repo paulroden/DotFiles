@@ -1,13 +1,16 @@
 pkgs:
 [
-  (pkgs.agda.withPackages (p: [ p.standard-library p.cubical ] ))
+  (pkgs.agda.withPackages (p: [
+    p.standard-library
+    p.cubical
+  ]))
   pkgs.automake
   pkgs.broot
   pkgs.cabal-install
   pkgs.cabal2nix
   pkgs.cachix
   pkgs.chez-racket
-  pkgs.clang
+  pkgs.clang_14
   pkgs.cmake
   pkgs.deno
   pkgs.dhall
@@ -53,12 +56,13 @@ pkgs:
   pkgs.less
   pkgs.lima
   pkgs.libgit2
+  pkgs.libiconv
+  pkgs.llvmPackages.bintools-unwrapped # ref. https://matklad.github.io/2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html; `-unwrapped` avoids collision with pkgs.clang
   pkgs.lua53Packages.digestif
   pkgs.mas
   pkgs.magic-wormhole-rs
   pkgs.ncurses
   pkgs.neofetch
-  pkgs.neovim
   pkgs.nil
   pkgs.nix-prefetch-git
   pkgs.nix-tree
@@ -69,12 +73,16 @@ pkgs:
   # pkgs.ormolu
   pkgs.ouch
   pkgs.pandoc
+  pkgs.poetry
   (pkgs.python311.withPackages(p: [
     p.httpx
     p.ipython
+    p.mypy
+    p.mypy-extensions
     p.numpy
     p.pandas
-  #  p.polars  --currently broken on Darwin and aarch64 linux
+    #  p.polars  --currently broken on Darwin and aarch64 linux
+    p.poetry-core
     p.pydantic
   ]))
   pkgs.procs
