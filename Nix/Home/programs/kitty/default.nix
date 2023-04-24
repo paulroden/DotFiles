@@ -12,9 +12,8 @@
     enable_audio_bell = false;
     update_check_interval = 0;
     window_padding_width = 10;
-    remember_window_size = "yes";
-    initial_window_width = "80";  # c => 'cells', rather than pixels
-    initial_window_height = "48";
+    initial_window_width = "640";  # c => 'cells', rather than pixels
+    initial_window_height = "360";
     cursor_shape = "beam";
     tab_bar_edge = "top";
     tab_title_max_length = 20;
@@ -38,7 +37,7 @@
     "ctrl+t" = "new_tab_with_cwd";
     "cmd+t" = "new_tab_with_cwd";  #🍎
     "ctrl+shift+enter" = "new_window_with_cwd";
-    "cmd+enter" = "new_window_with_cwd"; #🍎
+    "cmd+enter" = "new_window_with_cwd";  #🍎
   };
   darwinLaunchOptions = [
     "--single-instance"
