@@ -10,6 +10,12 @@
          (not (server-running-p)))
     (server-start))
 
+;; If `eud' is installed, let this determine where Emacs server socket files
+;; live and set `server-socket-dir' to this; otherwise do nothing here.
+(when (executable-find "eud")
+  (setq server-socket-dir
+	(shell-command-to-string "eud server-socket-dir-path")))
+
 
 ;; Grab the Emacs environment name, if one is set
 (eval-and-compile
