@@ -18,7 +18,7 @@ home-manager switch --flake .#paul
 
 
 ##### Rebuild Machine Configuration
-e.g. _Âsâra_, my favourite MacBook Pro (sans diacritics in Nix files...)
+e.g. _Âsâra_, my favourite MacBook Pro (sans diacritics for Nix files...)
 
 ``` shell
 nix build .#darwinConfigurations.Asara.system
@@ -26,7 +26,7 @@ nix build .#darwinConfigurations.Asara.system
 
 
 ##### Manual Installation of Nix Darwin
-The [manual installation process](https://github.com/LnL7/nix-darwin/#manual-install) is worth knowing about to understand the changes that `nix-darwin` makes to a MacOS system does.
+The [manual installation process](https://github.com/LnL7/nix-darwin/#manual-install) is worth knowing about to understand the changes that `nix-darwin` makes to a MacOS system.
 
 These are the steps followed here (on MacOS Ventura 13.2).
 
@@ -58,7 +58,7 @@ or, the last two commands can be done using the flake in at the root of this dir
 darwin-rebuild build  --flake .#
 darwin-rebuild switch --flake .#
 ```
-...which is probably preferable, since this is aiming to be a flake-first setup. 
+...which is desirable, since this is aiming to be a flake-first setup. 
 
 ... we want to get the useful stuff out of the old `nix.conf`:
 
