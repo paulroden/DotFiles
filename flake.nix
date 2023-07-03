@@ -6,7 +6,7 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd";  # nixpkgs-unstable
+      url = "github:NixOS/nixpkgs/bf0e44973fd10199eb47325b94647d84b0317168";  # nixpkgs-unstable
     };
 
     darwin = {
@@ -15,7 +15,7 @@
     };
     
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/07c347bb50994691d7b0095f45ebd8838cf6bc38"; # release 23.05
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,10 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    nix-your-shell = {
-      url = "github:MercuryTechnologies/nix-your-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
