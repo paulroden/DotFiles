@@ -12,6 +12,8 @@ pkgs:
   pkgs.chez-racket
   pkgs.clang_14
   pkgs.cmake
+  pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+  pkgs.darwin.libiconv
   pkgs.deno
   pkgs.dhall
   pkgs.dhall-bash
@@ -90,10 +92,10 @@ pkgs:
   pkgs.racket
   pkgs.ripgrep
   pkgs.ruff
-  pkgs.rust-analyzer
   pkgs.sd
   pkgs.shfmt
   pkgs.silver-searcher
+  pkgs.sioyek
   pkgs.slack  # UNFREE
   pkgs.socat
   pkgs.starship
@@ -113,4 +115,13 @@ pkgs:
   pkgs.zsh-autocomplete
   pkgs.zsh-completions
   pkgs.zstd
+  # rust toolchain via fenix
+  (pkgs.fenix.complete.withComponents [
+    "cargo"
+    "clippy"
+    "rust-src"
+    "rustc"
+    "rustfmt"
+  ])
+  pkgs.rust-analyzer-nightly
 ]
