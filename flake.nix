@@ -38,6 +38,11 @@
       url = "github:input-output-hk/haskell.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     # crane for Rust, because it lifts cargo crates 🦀
     crane = {
@@ -58,7 +63,7 @@
     , darwin-emacs
     , darwin-emacs-packages
     , haskell-nix
-    , nix-your-shell
+    , fenix
     , soft-serve
     , ...
     }:
@@ -69,12 +74,13 @@
         overlays = [
           darwin-emacs.overlays.emacs
           darwin-emacs-packages.overlays.package
-          nix-your-shell.overlays.default
+          fenix.overlays.default
           soft-serve.overlays.default
         ];
         config.allowUnfree = true;
       };
     in {
+      packages.${system}.default = fenix.packages.${system}.minimal.toolchain;
       darwinConfigurations = {
         "Asara" = darwin.lib.darwinSystem {
           inherit pkgs system;

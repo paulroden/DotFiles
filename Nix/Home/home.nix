@@ -3,6 +3,7 @@ let
   username = "paul";
   homeDirectory = "/Users/${username}";
   homebrewRoot = "/opt/homebrew";
+  frameworks = pkgs.darwin.apple_sdk.frameworks;
 in
 {
   imports = [ ./dock-items.nix ];
@@ -22,8 +23,15 @@ in
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
       # linking libiconv from clang seems to be a pervasive issue on MacOS with aarch...
       LIBRARY_PATH="$LIBRARY_PATH:${pkgs.libiconv}/lib";
-      CPPFLAGS="-L${pkgs.libiconv}/include";
-      LDFLAGS="-L${pkgs.libiconv}/lib";
+      # linker stuff - it never ends...
+      CFLAGS="-L${pkgs.libiconv}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CFLAGS";
+      CPPFLAGS="-L${pkgs.libiconv}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CPPFLAGS";
+      LDFLAGS = "-L${pkgs.libiconv}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $LDFLAGS";
+      LDCONFIG = "-F${frameworks.CoreFoundation}/Library/Frameworks";
+      NIX_LDFLAGS = "-L${pkgs.libiconv}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $NIX_LDFLAGS";
+      # this effing works 🦀🦀🦀 !!
+      RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
+      
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };
