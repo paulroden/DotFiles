@@ -9,6 +9,10 @@
       url = "github:NixOS/nixpkgs/bf0e44973fd10199eb47325b94647d84b0317168";  # nixpkgs-unstable
     };
 
+    nixpkgs-head = {
+      url = "github:NixOS/nixpkgs";
+    };
+
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +57,8 @@
   };
 
   outputs =
-    { nixpkgs
+    inputs@{
+      nixpkgs
     , darwin
     , home-manager
     , darwin-emacs
@@ -72,6 +77,11 @@
           darwin-emacs-packages.overlays.package
           fenix.overlays.default
           soft-serve.overlays.default
+          (
+            final: prev: {
+              head = import inputs.nixpkgs-head { system = final.system; };
+            }
+          )
         ];
         config.allowUnfree = true;
       };

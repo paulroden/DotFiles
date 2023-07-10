@@ -645,6 +645,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-head": {
+      "locked": {
+        "lastModified": 1688419164,
+        "narHash": "sha256-FCoRG8jGz8kTH0vS5x0bIllEC+EqHic5kGlOIB4n9WI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a9ade0d69b8d49ac4409a80663bef1ca0795607d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -737,6 +752,7 @@
         "haskell-nix": "haskell-nix",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-head": "nixpkgs-head",
         "soft-serve": "soft-serve"
       }
     },

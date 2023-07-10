@@ -12,7 +12,9 @@ pkgs:
   pkgs.chez-racket
   pkgs.clang_14
   pkgs.cmake
+  pkgs.colima
   pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+  pkgs.darwin.apple_sdk.frameworks.Security
   pkgs.darwin.libiconv
   pkgs.deno
   pkgs.dhall
@@ -54,7 +56,6 @@ pkgs:
   pkgs.ispell
   pkgs.jq
   pkgs.jql
-  pkgs.jupyter
   pkgs.less
   pkgs.lima
   pkgs.libgit2
@@ -76,15 +77,17 @@ pkgs:
   pkgs.ouch
   pkgs.pandoc
   pkgs.poetry
-  (pkgs.python311.withPackages(p: [
+  (pkgs.head.python311.withPackages(p: [
     p.httpx
     p.ipython
+    p.jupyterlab
     p.mypy
     p.mypy-extensions
     p.numpy
     p.pandas
-    #  p.polars  --currently broken on Darwin and aarch64 linux
+    p.polars  # --currently broken on Darwin and aarch64 linux
     p.poetry-core
+    p.pyarrow
     p.pydantic
   ]))
   pkgs.procs
