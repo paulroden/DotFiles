@@ -13,13 +13,20 @@
 ;; originally from AIST Japan), we `require' this in advance.
 (require 'quail)
 
-(use-package agda-input
-  :load-path (lambda () (agda-mode-path))
-  :demand t
-  :after quail
-  :hook ((text-mode prog-mode) . (lambda () (set-input-method "Agda")))
-  :custom (default-input-method "Agda"))
+;; (use-package agda-input
+;;   :load-path (lambda () (agda-mode-path))
+;;   :demand t
+;;   :after quail
+;;   :hook ((text-mode prog-mode) . (lambda () (set-input-method "Agda")))
+;;   :custom (default-input-method "Agda"))
 
+
+;; ;; 🙈
+;; (use-package evil
+;;   :straight t
+;;   :demand t
+;;   :config
+;;   (evil-mode 1))
 
 
 ;; Help me remember where to plonk my next digit
@@ -40,6 +47,14 @@
 
 ;; General Keybindings
 (global-set-key (kbd "s-Z") #'undo-redo)
+
+
+;; Cursors, selections, regions, curses
+(use-package expand-region
+  :straight t
+  :demand t
+  :bind (("C--" . er/contract-region)
+	 ("C-=" . er/expand-region)))
 
 
 ;; Electric Pairs

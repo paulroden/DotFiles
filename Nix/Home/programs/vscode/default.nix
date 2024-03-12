@@ -35,7 +35,7 @@
   extensions = with pkgs.vscode-extensions; [
     arcticicestudio.nord-visual-studio-code
     arrterian.nix-env-selector
-    haskell.haskell
+#    haskell.haskell
     jnoortheen.nix-ide
     #slbtty.lisp-syntax
     ms-pyright.pyright
@@ -60,6 +60,12 @@
       publisher = "artlaman";
       version = "1.2.21";
       sha256 = "sha256-nCwTMAq83JPNSil5AaVueu5N2YxcoBl1GYxERO4u3Qo=";
+    }
+    {
+      name = "haskell";
+      publisher = "haskell";
+      version = "2.5.0";
+      sha256 = "sha256-WolhQ+D1rIcvoY1+1coEo0pnORv0+RA8Vti1P+vg2LY=";
     }
     {
       name = "theme-alabaster";

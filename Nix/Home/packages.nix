@@ -74,6 +74,7 @@ pkgs:
   pkgs.nodejs
   pkgs.nodePackages.bash-language-server
   # pkgs.ormolu
+  pkgs.obsidian
   pkgs.ouch
   pkgs.pandoc
   pkgs.poetry
@@ -85,11 +86,12 @@ pkgs:
     p.mypy-extensions
     p.numpy
     p.pandas
-    p.polars  # --currently broken on Darwin and aarch64 linux
+    p.polars
     p.poetry-core
     p.pyarrow
     p.pydantic
   ]))
+#  (pkgs.python311Packages.jupyterlab)  # currently fails with nixpkgs-HEAD due to failing test of `twisted` [202-08-30]
   pkgs.procs
   pkgs.qemu
   pkgs.racket
