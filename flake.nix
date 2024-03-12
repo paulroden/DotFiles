@@ -6,7 +6,7 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/87cc06983c14876bb56a6a84935d1a3968f35999";  # nixpkgs-24.05-pre
+      url = "github:NixOS/nixpkgs/43092bdad4f5dfa7c7c3dab2ef182c8d4465e528";
     };
 
     nixpkgs-head = {

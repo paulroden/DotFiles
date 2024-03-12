@@ -15,7 +15,6 @@ pkgs:
   pkgs.colima
   pkgs.darwin.apple_sdk.frameworks.CoreFoundation
   pkgs.darwin.apple_sdk.frameworks.Security
-  pkgs.darwin.libiconv
   pkgs.deno
   pkgs.dhall
   pkgs.dhall-bash
@@ -106,7 +105,7 @@ pkgs:
   pkgs.socat
   pkgs.starship
   pkgs.teams  # UNFR€€
-  pkgs.texlive.combined.scheme-full
+  pkgs.texlive.combined.scheme-small
   pkgs.tldr
   pkgs.tmux
   pkgs.tree-sitter
@@ -121,7 +120,7 @@ pkgs:
   pkgs.zsh-autocomplete
   pkgs.zsh-completions
   pkgs.zstd
-  # rust toolchain via fenix
+  # A rust toolchain via fenix
   (pkgs.fenix.complete.withComponents [
     "cargo"
     "clippy"
