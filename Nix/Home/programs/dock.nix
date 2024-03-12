@@ -12,6 +12,7 @@
     "/Applications/NetNewsWire.app/"
     "/Applications/PDF Viewer.app/"
     "${pkgs.emacsGit}/Applications/Emacs.app/"
+    "/Applications/iA Writer.app/"
   ];
   others = [
     {

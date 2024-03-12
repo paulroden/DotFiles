@@ -51,6 +51,7 @@
       "Dictionaries" = 1380563956;
       "PDF Viewer" = 1120099014;
       "Pastel" = 413897608;
+      "iA Writer" = 775737590;
     };
   };
 }
