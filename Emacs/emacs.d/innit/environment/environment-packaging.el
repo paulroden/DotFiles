@@ -47,6 +47,7 @@
 ;; Git repositories as the unit of a package.
 ;; (May consider Emacs 30's `package-vc-install' at a later date)
 ;; Bootstrapping straight.el
+(setq straight-repository-branch "develop")
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
