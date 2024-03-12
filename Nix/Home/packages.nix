@@ -29,8 +29,8 @@ pkgs:
   pkgs.du-dust
   pkgs.emacs-vterm
   pkgs.emacsGit
-  pkgs.exa
   pkgs.exiftool
+  pkgs.eza
   pkgs.fd
   pkgs.ffmpeg
   pkgs.figlet
@@ -86,7 +86,7 @@ pkgs:
     p.mypy-extensions
     p.numpy
     p.pandas
-    p.polars
+    # p.polars
     p.poetry-core
     p.pyarrow
     p.pydantic
@@ -102,6 +102,7 @@ pkgs:
   pkgs.silver-searcher
   pkgs.sioyek
   pkgs.slack  # UNFREE
+  pkgs.skhd
   pkgs.socat
   pkgs.starship
   pkgs.teams  # UNFR€€

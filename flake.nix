@@ -6,7 +6,7 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/bf0e44973fd10199eb47325b94647d84b0317168";  # nixpkgs-unstable
+      url = "github:NixOS/nixpkgs/87cc06983c14876bb56a6a84935d1a3968f35999";  # nixpkgs-24.05-pre
     };
 
     nixpkgs-head = {
@@ -19,7 +19,7 @@
     };
     
     home-manager = {
-      url = "github:nix-community/home-manager/07c347bb50994691d7b0095f45ebd8838cf6bc38"; # release 23.05
+      url = "github:nix-community/home-manager/017b12de5b899ef9b64e2c035ce257bfe95b8ae2"; # master @ 2024-03-11
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
