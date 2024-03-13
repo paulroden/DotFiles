@@ -80,7 +80,7 @@ pkgs:
   (pkgs.head.python311.withPackages(p: [
     p.httpx
     p.ipython
-    p.jupyterlab
+ #   p.jupyterlab
     p.mypy
     p.mypy-extensions
     p.numpy
@@ -90,7 +90,6 @@ pkgs:
     p.pyarrow
     p.pydantic
   ]))
-#  (pkgs.python311Packages.jupyterlab)  # currently fails with nixpkgs-HEAD due to failing test of `twisted` [202-08-30]
   pkgs.procs
   pkgs.qemu
   pkgs.racket

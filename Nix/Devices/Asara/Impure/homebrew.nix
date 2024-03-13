@@ -21,7 +21,6 @@
       "netnewswire"
       "nova"
       "raycast"
-      "remarkable"
       "suspicious-package"
       "syntax-highlight"
       "MonitorControl"
@@ -52,6 +51,7 @@
       "PDF Viewer" = 1120099014;
       "Pastel" = 413897608;
       "iA Writer" = 775737590;
+      "reMarkable" = 1276493162;
     };
   };
 }
