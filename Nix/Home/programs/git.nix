@@ -12,9 +12,6 @@
                   --abbrev-commit
                   --pretty=format:'%Cred%h%Creset :%C(yellow)%d%Creset %s %C(dim white)(%cr)%Creset %C(brightyellow)by %C(italic)%an%Creset' '';
   };
-  extraConfig = {
-    init.defaultBranch = "main";
-  };
   delta = {
     enable = true;
     options = {
@@ -32,4 +29,17 @@
       };
     };
   };
+  extraConfig = {
+    init.defaultBranch = "main";
+    commit.verbose = true;
+    diff.algorithm = "histogram";
+    log.date = "iso";
+    merge.conflictStyle = "zdiff3";
+    push.followtags = true;
+    # fsck all up/down-stream read/writes
+    transfer.fsckObjects = true;
+    fetch.fsckObjects = true;
+    receive.fsckObjects = true;
+  };
+  ignores = [ ".DS_Store" ];
 }
