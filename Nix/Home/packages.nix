@@ -38,6 +38,7 @@ pkgs:
   pkgs.gh
 #  pkgs.ghostscript  # conflict with texlive
   pkgs.git
+  pkgs.gnuplot
   pkgs.go
   pkgs.graphviz
   pkgs.haskell.compiler.ghc94
@@ -74,6 +75,7 @@ pkgs:
   pkgs.nodePackages.bash-language-server
   # pkgs.ormolu
   pkgs.obsidian
+  pkgs.onefetch
   pkgs.ouch
   pkgs.pandoc
   pkgs.poetry
@@ -104,6 +106,7 @@ pkgs:
   pkgs.socat
   pkgs.starship
   pkgs.teams  # UNFR€€
+  pkgs.termpdfpy
   pkgs.texlive.combined.scheme-small
   pkgs.tldr
   pkgs.tmux
