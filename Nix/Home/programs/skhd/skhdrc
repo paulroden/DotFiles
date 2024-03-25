@@ -1,0 +1,4 @@
+# New Safari Window in Background
+cmd + alt + shift - n : new-safari-window
+
+cmd + shift + alt - j : open -a Photos.app
