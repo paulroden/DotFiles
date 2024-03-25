@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   username = "paul";
   homeDirectory = "/Users/${username}";
@@ -31,7 +31,7 @@ in
       NIX_LDFLAGS = "-L${pkgs.libiconv}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $NIX_LDFLAGS";
       # this effing works 🦀🦀🦀 !!
       RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
-      
+
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };
@@ -52,7 +52,7 @@ in
       "/usr/sbin"
       "/sbin"
       # the below path is for the XCode command line tools and has caused issues
-      # with build tools (e.g. `cargo`) and the linker `ld`: `/usr/bin/ld` is 
+      # with build tools (e.g. `cargo`) and the linker `ld`: `/usr/bin/ld` is
       # expected instead of the `ld` under this path. Priorise above `/usr/bin`.
       "/Library/Developer/CommandLineTools/usr/bin"
       "/Library/Apple/usr/bin"
@@ -61,10 +61,7 @@ in
       ll = "exa -lag";
       lt = "exa -laT --level=2";
       ql = "qlmanage -p";  # quicklook -- MacOS only
-      kks = "kitty +kitten ssh";
-      # convenience function to the home-manager rebuild invocation, which
-      # is a little fragile as it depends on the location of this very file
-      home-rebuild = "home-manager switch --flake ~/DotFiles#${username}";
+      sk = "kitten ssh";
     };
 
     # GHCI config
@@ -78,9 +75,12 @@ in
       standard-library
       cubical
     '';
-    
+
     # kitticon: https://github.com/hristost/kitty-alternative-icon
     file.".config/kitty/kitty.app.icns".source = ./programs/kitty/kitty.app.icns;
+
+    # skhd config
+    file.".config/skhd/skhdrc".source = ./programs/skhd/skhdrc;
   };
   programs = {
     home-manager.enable = true;
@@ -97,4 +97,15 @@ in
     vscode = import ./programs/vscode { inherit pkgs; };
   };
   local.dock = import ./programs/dock.nix { inherit config pkgs; };
+  
+  targets.darwin.defaults = {
+    "com.apple.dock" = {
+      tilesize = lib.mkDefault 40;
+      size-immutable = lib.mkDefault true;
+      expose-group-apps = lib.mkDefault true;
+    };
+    "com.manytricks.Moom" = {
+      "Grid Spacing: Gap" = 2;
+    };
+  };
 }

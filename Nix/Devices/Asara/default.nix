@@ -1,17 +1,26 @@
 { config, lib, nixpkgs, pkgs,  ... }:
 {
   imports = [ ./Impure/homebrew.nix ];
-  
+
   services = {
-    nix-daemon.enable = true;
+    nix-daemon = {
+      enable = true;
+    };
 
     emacs = {
       enable = true;
       package = pkgs.emacsGit;
     };
+
+    skhd = {
+      enable = true;
+      package = pkgs.skhd;
+    };    
   };
-  
-  programs.zsh.enable = true;
+
+  programs = {
+    zsh.enable = true;
+  };
 
   nix = {
     settings = {
@@ -96,7 +105,7 @@
       pkgs.source-han-mono
       pkgs.source-han-sans
       pkgs.source-han-serif
-      pkgs.source-sans 
+      pkgs.source-sans
       pkgs.sorts-mill-goudy
       pkgs.stix-two
       pkgs.weather-icons
@@ -108,7 +117,17 @@
       })
     ];
   };
-  
+
+  # MacOS defaults - full list here: https://daiderd.com/nix-darwin/manual/index.html
+  system = {
+    defaults = {
+      dock = {
+        autohide = true;
+        orientation = "left";
+        autohide-time-modifier = 0.3;
+      };
+    };
+  };
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
