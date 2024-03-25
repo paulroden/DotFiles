@@ -5,14 +5,14 @@
     "${pkgs.kitty}/Applications/kitty.app/"
     "/System/Applications/Calendar.app/"
     "/System/Applications/Mail.app/"
+    "${config.home.homeDirectory}/Applications/HEY.app"
     "/System/Applications/Music.app/"
-    "/System/Applications/Maps.app/"
-    "/System/Applications/Photos.app/"
     "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/"  # this one is super-special!
     "/Applications/NetNewsWire.app/"
-    "/Applications/PDF Viewer.app/"
     "${pkgs.emacsGit}/Applications/Emacs.app/"
     "/Applications/iA Writer.app/"
+    "${config.home.homeDirectory}/Applications/ChatGPT.app"
+    "/Applications/PDF Viewer.app/"
   ];
   others = [
     {
