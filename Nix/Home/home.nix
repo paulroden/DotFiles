@@ -104,8 +104,6 @@ in
       size-immutable = lib.mkDefault true;
       expose-group-apps = lib.mkDefault true;
     };
-    "com.manytricks.Moom" = {
-      "Grid Spacing: Gap" = 2;
-    };
+    "com.manytricks.Moom" = import ./programs/moom;
   };
 }

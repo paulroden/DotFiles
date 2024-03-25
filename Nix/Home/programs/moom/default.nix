@@ -2,7 +2,7 @@
   "Keyboard Controls" = {
     "Visual Representation" = "⌃⇧W";
     "Identifier" = "Keyboard Controls";
-    "Key Code" = "13";  # W => 0x0D => 13
+    "Key Code" = "13"; # W => 0x0D => 13
     "Modifier Flags" = "393475";
   };
   "Allow For Drawers" = true;
@@ -19,7 +19,7 @@
   "Key Control: Escape" = 0;
   "Key Control: Return" = 22;
   "Key Control: Tab" = 1;
-  
+
   "Mouse Controls" = true;
   "Mouse Controls Delay" = 0.0;
   "Mouse Controls Grid" = true;
@@ -30,7 +30,7 @@
   "Mouse Controls Include Custom Controls: Show On Hover" = true;
   "Mouse Controls Include Custom Controls" = true;
   "Mouse Controls Trigger: Apple: Primary" = false;
-  
+
   "Snap" = true;
   "Snap: 3" = 12;
   "Snap Back: Scope" = 1;
