@@ -104,6 +104,6 @@ in
       size-immutable = lib.mkDefault true;
       expose-group-apps = lib.mkDefault true;
     };
-    "com.manytricks.Moom" = import ./programs/moom;
+    "com.manytricks.Moom" = import ./programs/moom { inherit lib; };
   };
 }
