@@ -23,6 +23,7 @@
       "netnewswire"
       "nova"
       "orbstack"
+      "racket"  # cask version includes Dr. Racket for Mac
       "raycast"
       "suspicious-package"
       "syntax-highlight"
