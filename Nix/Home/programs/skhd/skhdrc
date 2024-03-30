@@ -1,4 +1,27 @@
-# New Safari Window in Background
-cmd + alt + shift - n : new-safari-window
+# Config for skhd
 
-cmd + shift + alt - j : open -a Photos.app
+# Primarily used for quick launching some specific apps
+# (Unlike most users of skhd, I use Moom rather than yabai for window management)
+
+# Modes
+:: default
+:: mode_open @
+
+# Enger "open" mode
+default < fn - o ; mode_open
+
+# "Open mode" commands
+mode_open < b         : new-safari-window  ; default
+mode_open < c         : open -a "Contacts.app"  ; default
+mode_open < f         : open -a "Focusrite Control 2.app"  ; default
+mode_open < t         : kitty --single-instance -d ~  ; default
+mode_open < d         : open -a "Chambers Dictionary.app"  ; default
+mode_open < shift - d : open -a "Chambers Thesaurus.app"  ; default
+mode_open < l         : open -a Maps.app  ; default
+mode_open < m         : open -a Mail.app ; default
+mode_open < shift - m : open -a Hey.app ; default
+mode_open < alt - m   : open -a Messages.app ; default
+mode_open < p         : open -a Photos.app  ; default
+
+mode_open < ctrl - g ; default
+mode_open < escape  ; default
