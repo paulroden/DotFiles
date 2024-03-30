@@ -87,6 +87,7 @@ in
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      enableBashIntegration = true;
     };
     git = import ./programs/git.nix { inherit config; };
     fish = import ./programs/fish { inherit pkgs; };
