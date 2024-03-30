@@ -64,6 +64,11 @@
   :custom (flycheck-display-errors-delay 0.2)
   :init (global-flycheck-mode))
 
+;;; but ATempt To Repair At Point
+;;
+(use-package attrap
+  :straight t
+  :bind (("C-x /" . attrap-attrap)))
 
 ;;; ElDoc
 (use-package eldoc
@@ -130,8 +135,10 @@
          ("\\.lagda\\.\\(?:md\\|markdown\\|org\\|tex\\|latex\\|rst\\)\\'" . agda2-mode)))
 
 ;;; Haskell
+;; with [[Dante][https://github.com/jyp/dante]]
+;; (see also: http://h2.jaguarpaw.co.uk/posts/how-i-use-dante/)
 (use-package haskell-mode
-  :straight t
+  :straight (haskell-mode :type git :host github :repo "haskell/haskell-mode")
   :bind (:map haskell-mode-map
               ("C-c a c" . haskell-cabal-visit-file)
               ("C-c a i" . haskell-navigate-imports)
@@ -139,16 +146,33 @@
               ("C-c a I" . haskell-navigate-imports-return)
               :map haskell-cabal-mode-map
               ("C-c m"   . haskell-compile))
+  :config
+  (setq eldoc-documentation-strategy #'eldoc-documentation-default)
   :custom
   (haskell-compile-cabal-build-command
    "cabal build all -ferror-spans -funclutter-valid-hole-fits")
-  :config
-  (defcustom haskell-formatter 'ormolu
-    "The Haskell formatter to use. One of: 'ormolu, 'stylish, nil. Set it per-project in .dir-locals."
-    :safe 'symbolp)
   :hook
   (haskell-mode . eglot-ensure)
-  (haskell-mode . (lambda () (setq eglot-confirm-server-initiated-edits nil))))
+  (haskell-mode . (lambda () (setq eglot-confirm-server-initiated-edits nil)))
+  (haskell-mode . (lambda ()
+		    (flymake-mode)
+		    (add-hook 'flymake-diagnostic-functions 'attrap-flymake-hlint nil t))))
+
+(use-package dante
+  :straight t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+  :config
+  (require 'flymake-flycheck)
+  (defalias 'flymake-hlint
+    (flymake-flycheck-diagnostic-function-for 'haskell-hlint))
+  (add-to-list 'flymake-diagnostic-functions 'flymake-hlint)
+  (flycheck-add-next-checker 'haskell-dante '(info . haskell-hlint))
+  :hook
+  (haskell-mode . flymake-mode)
+  (haskell-mode . dante-mode))
 
 (use-package haskell-snippets
   :straight t
