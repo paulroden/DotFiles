@@ -17,6 +17,7 @@
       "acorn"
       "apparency"
       "discord"
+      "focusrite-control-2"
       "meetingbar"
       "moom"
       "netnewswire"
