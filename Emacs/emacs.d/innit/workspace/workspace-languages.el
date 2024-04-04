@@ -32,6 +32,8 @@
 
 
 ;;; Eglot. The tasteful language server. Now built-in to Emacs.
+;;  with purported speedups from eglot-booster
+;;  (which wraps https://github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot
   :after (yas-minor-mode ace-popup-menu)
   :commands (eglot eglot-code-actions eglot-rename)
@@ -54,6 +56,10 @@
          (rust-mode    . eglot-ensure)
          (nix-mode     . eglot-ensure)))
 
+(use-package eglot-booster
+  :straight (:type git :host github :repo "jdtsmith/eglot-booster")
+  :after eglot
+  :config (eglot-booster-mode))
 
 
 ;;; Flycheck: remove the lint from between the economy class seats
