@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+new_safari_window_in_background() {
+    osascript -l JavaScript <<END
+const mkApp = (name) => {
+    const App = Application(name);
+    App.includeStandardAdditions = true;
+    return App;
+}
+
+const Safari = mkApp("Safari");
+Safari.make({new: "document"});
+END
+}
+
+new_safari_window_in_background >/dev/null

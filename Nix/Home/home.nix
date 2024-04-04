@@ -81,6 +81,13 @@ in
 
     # skhd config
     file.".config/skhd/skhdrc".source = ./programs/skhd/skhdrc;
+
+    # custom scripts to live in ~/bin
+    file."bin/new-safari-window" = {
+      source = ./programs/scripts/new-safari-window;
+      executable = true;
+    };
+    
   };
   programs = {
     home-manager.enable = true;
