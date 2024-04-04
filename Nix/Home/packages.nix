@@ -13,7 +13,7 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   cabal2nix
   cachix
   chez-racket
-  clang_14
+  clang_17
   cmake
   colima
   darwin.apple_sdk.frameworks.CoreFoundation
@@ -44,12 +44,14 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   gnuplot
   go
   graphviz
-  haskell.compiler.ghc98
+  haskell.compiler.ghc96
+  (haskellExe "happy")
   (haskellExe "hlint")
   (haskellExe "hoogle")
   (haskellExe "hpack")
   (haskellExe "hscolour")
   (haskellExe "pointfree")
+  (haskellExe "shake")
   helix
   # hexcurse
   htop

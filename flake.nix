@@ -42,11 +42,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    haskell-nix = {
-      url = "github:input-output-hk/haskell.nix/nix-tools-0.1.6";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     fenix = {
       url = "github:nix-community/fenix/12619df460ea671b1e94a5c2c8c17ca91cb86ebe";  # master @ 2024-03-25
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +63,6 @@
     , darwin-emacs
     , darwin-emacs-packages
     , emacs-lsp-booster
-    , haskell-nix
     , fenix
     , soft-serve
     , ... }:
