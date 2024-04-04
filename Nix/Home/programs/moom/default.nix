@@ -7,6 +7,7 @@
     #   "Key Code" = "13"; # W => 0x0D => 13
     #   "Modifier Flags" = "393475";
     # };
+    "Application Mode" = 2;  # 0 = dock icon; 1 = menu bar icon; 2 = faceless 
     
     "Allow For Drawers" = true;
     "Dismiss After Filling" = false;
