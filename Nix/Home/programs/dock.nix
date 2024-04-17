@@ -13,6 +13,7 @@
     "/Applications/iA Writer.app/"
     "${config.home.homeDirectory}/Applications/ChatGPT.app"
     "/Applications/PDF Viewer.app/"
+    "/Applications/Collections.app/"
   ];
   others = [
     {

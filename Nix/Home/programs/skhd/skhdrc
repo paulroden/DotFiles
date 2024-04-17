@@ -18,10 +18,14 @@ mode_open < t         : kitty --single-instance -d ~  ; default
 mode_open < d         : open -a "Chambers Dictionary.app"  ; default
 mode_open < shift - d : open -a "Chambers Thesaurus.app"  ; default
 mode_open < l         : open -a Maps.app  ; default
-mode_open < m         : open -a Mail.app ; default
-mode_open < shift - m : open -a Hey.app ; default
-mode_open < alt - m   : open -a Messages.app ; default
+mode_open < m         : open -a Mail.app  ; default
+mode_open < shift - m : open -a Hey.app  ; default
+mode_open < h         : open -a Home.app  ; default
+mode_open < alt - m   : open -a Messages.app  ; default
 mode_open < p         : open -a Photos.app  ; default
+mode_open < shift - p : open -a Preview.app  ; default
+mode_open < alt - p   : open -a "PDF Viewer.app"  ; default
 
 mode_open < ctrl - g ; default
+mode_open < fn - g ; default
 mode_open < escape  ; default

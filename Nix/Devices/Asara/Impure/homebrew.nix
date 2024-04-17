@@ -18,6 +18,7 @@
       "apparency"
       "discord"
       "focusrite-control-2"
+      "jquake"
       "meetingbar"
       "moom"
       "netnewswire"
@@ -52,6 +53,7 @@
       "Chambers Dictionary" = 500583211;
       "Chambers Thesaurus" = 498829958;
       "Dictionaries" = 1380563956;
+      "Collections" = 1568395334;
       "Compressor" = 424390742;
       "Mainstage" = 634159523;
       "Final Cut Pro" = 424389933;
