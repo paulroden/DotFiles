@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
-let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
+let hasxe = x: haskell.lib.justStaticExecutables x;
+    haskg = haskellPackages;
  in
 [
   (agda.withPackages (p: [
@@ -32,6 +33,7 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   emacs-lsp-booster
   emacs-vterm
   emacsGit
+  emacsPackages.pdf-tools
   exiftool
   eza
   fd
@@ -45,13 +47,14 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   go
   graphviz
   haskell.compiler.ghc96
-  (haskellExe "happy")
-  (haskellExe "hlint")
-  (haskellExe "hoogle")
-  (haskellExe "hpack")
-  (haskellExe "hscolour")
-  (haskellExe "pointfree")
-  (haskellExe "shake")
+  (hasxe haskg.fourmolu)
+  (hasxe haskg.happy)
+  (hasxe haskg.hlint)
+  (hasxe haskg.hoogle)
+  (hasxe haskg.hpack)
+  (hasxe haskg.hscolour)
+  (hasxe haskg.pointfree)
+  (hasxe haskg.shake)
   helix
   # hexcurse
   htop
@@ -62,10 +65,12 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   ispell
   jq
   jql
+  jujutsu
   less
   lima
   libgit2
   libiconv
+  libpng
   llvmPackages.bintools-unwrapped # ref. https://matklad.github.io/2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html; `-unwrapped` avoids collision gwith clang
   lua53Packages.digestif
   mas
@@ -79,7 +84,6 @@ let haskellExe = x: haskell.lib.justStaticExecutables haskellPackages.${x};
   nix-your-shell
   nodejs
   nodePackages.bash-language-server
-  # ormolu
   obsidian
   onefetch
   ouch
