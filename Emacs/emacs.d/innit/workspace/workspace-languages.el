@@ -44,6 +44,8 @@
   ;; 	      ("C-c a r"   . eglot-rename))
   :config
   (setq eglot-autoshutdown t)
+  (setq eglot-workspace-configuration
+          '((haskell . ((formattingProvider . "fourmolu")))))
   (define-key eglot-mode-map (kbd "C-c r") 'eglot-rename)
   :custom
   (eglot-confirm-server-initiated-edits nil)
