@@ -75,5 +75,21 @@
    '((shell-file-name . "/bin/bash")
      (shell-command-switch . "-c"))))
 
+;; PDF Tools
+(eval-and-compile
+  (defconst pdf-tools-base-path (getenv "EMACS_PDF_TOOLS"))
+  (defconst pdf-tools-site-list-dir
+    (concat pdf-tools-base-path "/share/emacs/site-lisp/elpa/pdf-tools-20240317.848/")))
+
+(use-package pdf-tools
+  :straight t
+  :pin manual ;; don't reinstall when package updates
+  :mode  ("\\.pdf\\'" . pdf-view-mode)
+  :config
+  (setq pdf-info-epdfinfo-program
+	(expand-file-name "epdfinfo" pdf-tools-site-list-dir))
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t))
+
 (provide 'environment-interop)
 ;;; environment-interop.el ends here.

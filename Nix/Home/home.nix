@@ -21,6 +21,8 @@ in
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
       # emacs-vterm ref
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
+      # emacs pdf-tools:
+      EMACS_PDF_TOOLS = "${pkgs.emacsPackages.pdf-tools}";
       # linking libiconv from clang seems to be a pervasive issue on MacOS with aarch...
       LIBRARY_PATH="$LIBRARY_PATH:${pkgs.libiconv}/lib";
       # linker stuff - it never ends...
