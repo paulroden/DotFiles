@@ -13,13 +13,12 @@
 ;; originally from AIST Japan), we `require' this in advance.
 (require 'quail)
 
-;; (use-package agda-input
-;;   :load-path (lambda () (agda-mode-path))
-;;   :demand t
-;;   :after quail
-;;   :hook ((text-mode prog-mode) . (lambda () (set-input-method "Agda")))
-;;   :custom (default-input-method "Agda"))
-
+(use-package agda-input
+  :load-path (lambda () (agda-mode-path))
+  :demand t
+  :after quail
+  :hook ((text-mode prog-mode) . (lambda () (set-input-method "Agda")))
+  :custom (default-input-method "Agda"))
 
 ;; ;; 🙈
 ;; (use-package evil
