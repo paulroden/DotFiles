@@ -57,12 +57,13 @@
       "Compressor" = 424390742;
       "Mainstage" = 634159523;
       "Final Cut Pro" = 424389933;
+      "Ivory" = 6444602274;
       "Logic Pro" = 634148309;
       "Motion" = 434290957;
       "Pastel" = 413897608;
       "PDF Viewer" = 1120099014;
       "iA Writer" = 775737590;
-      "reMarkable" = 1276493162;
+      "reMarkable" = 1276493162;      
     };
   };
 }
