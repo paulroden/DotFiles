@@ -257,6 +257,7 @@
 (use-package poetry
  :straight t)
 
+
 ;;; C & C++
 ;; TODO: c++-ts-mode currently causes some confusion with tree sitter ('c++' or 'cpp'?)
 ;;       come back to this at a later date... (2023-02-03)
@@ -367,7 +368,7 @@
 
 ;;; Text. Plain or otherwise.
 (use-package titlecase
-  :straight (:type git :host github :repo "duckwork/titlecase.el")
+  :straight (:type git :host codeberg :repo "acdw/titlecase.el")
   :custom (titlecase-style 'nyt))
 
 
@@ -378,7 +379,6 @@
   :hook (conf-mode
          prog-mode
          text-mode))
-
 
 
 (provide 'workspace-languages)
