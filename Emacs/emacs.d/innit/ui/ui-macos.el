@@ -26,12 +26,23 @@
               '((ns-transparent-titlebar . t)
                 (ns-appearance . dark))))
 
+;; Default frame dimensions
+(setq default-frame-alist
+      (append default-frame-alist
+              '(;; frame position from top of screen [px]
+		(left . 300)
+		;; frame position from top of screen [px]
+		(top . 200)
+		;; width of frame [char width]
+		(width . 200)
+		;; height of frame [char height]
+		(height . 50))))
+
 (use-package ns-auto-titlebar
   :if (memq window-system '(mac ns))
   :straight t
   :config
   (ns-auto-titlebar-mode))
-
 
 ;;; Mac Modifier Keys
 (when (equal system-type 'darwin)
