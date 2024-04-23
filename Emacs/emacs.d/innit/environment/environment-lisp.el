@@ -28,7 +28,9 @@
  ;; if native-comp is having trouble, there's not very much I can do
  native-comp-async-report-warnings-errors 'silent
  ;; scroll to first error
- compilation-scroll-output 'first-error)
+ compilation-scroll-output 'first-error
+ ;; also, supress `'ad-handle-definition: ‘___’ got redefined' warnings
+ ad-redefinition-action 'accept)
 
 
 
