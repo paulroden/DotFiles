@@ -71,6 +71,7 @@
   (treemacs-follow-mode t)
   (treemacs-project-follow-mode t)
   (treemacs-filewatch-mode t)
+  (treemacs-file-event-delay 1000)
   :config
   (setq treemacs-fringe-indicator-mode 'only-when-focused)
   :hook
