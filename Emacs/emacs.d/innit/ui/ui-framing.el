@@ -71,9 +71,15 @@
   (treemacs-follow-mode t)
   (treemacs-project-follow-mode t)
   (treemacs-filewatch-mode t)
-  (treemacs-fringe-indicator-mode only-when-focused)
+  :config
+  (setq treemacs-fringe-indicator-mode 'only-when-focused)
+  :hook
+  ;; remove the mode-line from treemacs sidebar
+  (treemacs-mode . (lambda () (setq mode-line-format nil)))
   :custom-face
-  (treemacs-root-face ((t (:underline nil :bold t :height 1.0)))))
+  (treemacs-root-face ((t (:family "SF Mono" :underline nil :weight semi-bold :height 1.0))))
+  (treemacs-file-face ((t (:family "SF Mono" :underline nil :weight semi-light :height 1.0))))
+  (treemacs-directory-face ((t (:family "SF Mono" :underline nil :weight normal :height 1.0)))))
 
 (use-package treemacs-magit
   :straight t
@@ -147,6 +153,7 @@
 
 ;;; Window Frame Sizing
 (global-set-key (kbd "H-f") #'toggle-frame-fullscreen)
+
 
 
 (provide 'ui-framing)
