@@ -10,29 +10,6 @@
          (not (server-running-p)))
     (server-start))
 
-;; If `eud' is installed, let this determine where Emacs server socket files
-;; live and set `server-socket-dir' to this; otherwise do nothing here.
-(when (executable-find "eud")
-  (setq server-socket-dir
-	(shell-command-to-string "eud server-socket-dir-path")))
-
-
-;; Grab the Emacs environment name, if one is set
-(eval-and-compile
-  (defconst emacs-environment-name (getenv "EMACS_ENV_NAME")))
-
-
-;; Set preferred shell in `shell-file-name' (for me, it's fish 🐟).
-;; This typically falls back to a login shell (bash etc.) otherwise.
-(eval-and-compile
-  (let ((fish-path (string-trim-right (shell-command-to-string "which fish"))))
-      (when (file-exists-p fish-path)
-        (setq shell-file-name fish-path))))
-
-;; Location of `emacs-vterm', including dynamic loading library
-;; we compile this as a Nix derivation and export the result path to an env variable
-(eval-and-compile
-  (defconst vterm-load-path (getenv "EMACS_VTERM_PATH")))
 
 ;; Get environment variables as per the shell.
 ;; See https://github.com/d12frosted/homebrew-emacs-plus#injected-path for more.
@@ -51,6 +28,31 @@
 	  "PATH"))
   :config
   (exec-path-from-shell-initialize))
+
+;; Grab the Emacs environment name, if one is set
+(eval-and-compile
+  (defconst emacs-environment-name (getenv "EMACS_ENV_NAME")))
+
+
+;; Set preferred shell in `shell-file-name' (for me, it's fish 🐟).
+;; This typically falls back to a login shell (bash etc.) otherwise.
+(eval-and-compile
+  (let ((fish-path (string-trim-right (shell-command-to-string "which fish"))))
+      (when (file-exists-p fish-path)
+        (setq shell-file-name fish-path))))
+
+
+;; If `eud' is installed, let this determine where Emacs server socket files
+;; live and set `server-socket-dir' to this; otherwise do nothing here.
+(when (executable-find "eud")
+  (defconst server-socket-dir
+	(shell-command-to-string "eud server-socket-dir-path")))
+
+
+;; Location of `emacs-vterm', including dynamic loading library
+;; we compile this as a Nix derivation and export the result path to an env variable
+(eval-and-compile
+  (defconst vterm-load-path (getenv "EMACS_VTERM_PATH")))
 
 
 ;;; Share `ssh-agent' information with Emacs
