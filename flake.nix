@@ -6,10 +6,8 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/f3a20533b7f75b03f350ef3b4d51b0b829b1d33d";
+      url = "github:NixOS/nixpkgs/5e39a5c1129d6a772175418025f51b0c3022f971";  
     };
-
-    nixpkgs-head = { url = "github:NixOS/nixpkgs"; };
 
     darwin = {
       url = "github:lnl7/nix-darwin/bcc8afd06e237df060c85bad6af7128e05fd61a3";  # master @ 2024-03-17
@@ -20,16 +18,6 @@
       url =
         "github:nix-community/home-manager/017b12de5b899ef9b64e2c035ce257bfe95b8ae2";  # master @ 2024-03-11
         inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    darwin-emacs = {
-      url = "github:paulroden/nix-darwin-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    darwin-emacs-packages = {
-      url = "github:nix-community/emacs-overlay/b0277cb505f1ab0e5ea4b1ed22128f31aaec294a";  # master @ 2024-03-27
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-lsp-booster = {
@@ -57,11 +45,8 @@
 
   outputs =
     { nixpkgs
-    , nixpkgs-head
     , darwin
     , home-manager
-    , darwin-emacs
-    , darwin-emacs-packages
     , emacs-lsp-booster
     , fenix
     , soft-serve
@@ -71,14 +56,9 @@
     pkgs = import nixpkgs {
       localSystem = system;
       overlays = [
-        darwin-emacs.overlays.emacs
-        darwin-emacs-packages.overlays.package
         emacs-lsp-booster.overlays.default
         fenix.overlays.default
         soft-serve.overlays.default
-        (final: prev: {
-          head = import nixpkgs-head { system = final.system; };
-        })
         (final: prev: {
           dockutil = prev.dockutil.overrideAttrs (_: {
             src = let version = "3.1.3";

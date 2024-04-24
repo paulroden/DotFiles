@@ -2,6 +2,12 @@ pkgs:
 with pkgs;
 let hasxe = x: haskell.lib.justStaticExecutables x;
     haskg = haskellPackages;
+    # TODO: add this pretty icon upsteam to enable an override everywhere (prob. in soft-serve :)
+    # emacs' = emacs.overrideAttrs (prev: {
+    #   postInstall = (prev.postInstall or "") + ''
+    # cp ${./programs/emacs/nobu417-big-sur.icns} $out/Applications/Emacs.app/Contents/Resources/Emacs.icns
+    # '';
+    # });
  in
 [
   (agda.withPackages (p: [
@@ -32,7 +38,7 @@ let hasxe = x: haskell.lib.justStaticExecutables x;
   du-dust
   emacs-lsp-booster
   emacs-vterm
-  emacsGit
+  emacs
   emacsPackages.pdf-tools
   exiftool
   eza
@@ -89,7 +95,7 @@ let hasxe = x: haskell.lib.justStaticExecutables x;
   ouch
   pandoc
   poetry
-  (head.python311.withPackages(p: [
+  (python311.withPackages(p: [
     p.httpx
     p.ipython
  #   p.jupyterlab
