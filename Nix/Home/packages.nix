@@ -1,7 +1,8 @@
 pkgs:
 with pkgs;
-let hasxe = x: haskell.lib.justStaticExecutables x;
-    haskg = haskellPackages;
+let
+  hasxe = x: haskell.lib.justStaticExecutables x;
+  haskg = haskellPackages;
     # TODO: add this pretty icon upsteam to enable an override everywhere (prob. in soft-serve :)
     # emacs' = emacs.overrideAttrs (prev: {
     #   postInstall = (prev.postInstall or "") + ''
@@ -36,9 +37,9 @@ let hasxe = x: haskell.lib.justStaticExecutables x;
   direnv
   dockutil
   du-dust
+  emacs
   emacs-lsp-booster
   emacs-vterm
-  emacs
   emacsPackages.pdf-tools
   exiftool
   eza
@@ -95,15 +96,13 @@ let hasxe = x: haskell.lib.justStaticExecutables x;
   ouch
   pandoc
   poetry
-  (python311.withPackages(p: [
+  (python312.withPackages(p: [
     p.httpx
     p.ipython
- #   p.jupyterlab
-    p.mypy
-    p.mypy-extensions
+    p.jupyterlab
     p.numpy
     p.pandas
-    # p.polars
+    p.polars
     p.poetry-core
     p.pyarrow
     p.pydantic
