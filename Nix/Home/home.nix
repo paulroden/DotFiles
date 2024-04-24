@@ -1,9 +1,13 @@
 { pkgs, config, lib, ... }:
 let
+  # TODO: consider ${config.xdg.dataHome} below?
   username = "paul";
   homeDirectory = "/Users/${username}";
   homebrewRoot = "/opt/homebrew";
   frameworks = pkgs.darwin.apple_sdk.frameworks;
+  cFlags = "-L${pkgs.libiconv}/include -L${homebrewRoot}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CFLAGS";
+  linkerFlags = "-L${pkgs.libiconv}/lib -L${homebrewRoot}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $LDFLAGS";
+  libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib ${homebrewRoot}/lib";
 in
 {
   imports = [ ./dock-items.nix ];
@@ -24,13 +28,12 @@ in
       # emacs pdf-tools:
       EMACS_PDF_TOOLS = "${pkgs.emacsPackages.pdf-tools}";
       # linking libiconv from clang seems to be a pervasive issue on MacOS with aarch...
-      LIBRARY_PATH="$LIBRARY_PATH:${pkgs.libiconv}/lib";
+      LIBRARY_PATH = libraryPath;
       # linker stuff - it never ends...
-      CFLAGS="-L${pkgs.libiconv}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CFLAGS";
-      CPPFLAGS="-L${pkgs.libiconv}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CPPFLAGS";
-      LDFLAGS = "-L${pkgs.libiconv}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $LDFLAGS";
-      LDCONFIG = "-F${frameworks.CoreFoundation}/Library/Frameworks";
-      NIX_LDFLAGS = "-L${pkgs.libiconv}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $NIX_LDFLAGS";
+      CFLAGS = cFlags;
+      CPPFLAGS = cFlags;
+      LDFLAGS = linkerFlags;
+      NIX_LDFLAGS = lib.replaceStrings ["LDFLAGS"] ["NIX_LDFLAGS"] linkerFlags;
       # this effing works 🦀🦀🦀 !!
       RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
 
@@ -45,6 +48,7 @@ in
       "${homeDirectory}/.cabal/bin"
       "${homeDirectory}/.ghcup/bin"
       "/nix/var/nix/profiles/default/bin"
+      "${homeDirectory}/.orbstack/bin"
       "${homeDirectory}/bin"
       "${homebrewRoot}/bin"
       "${homebrewRoot}/sbin"
@@ -60,8 +64,8 @@ in
       "/Library/Apple/usr/bin"
     ];
     shellAliases = {
-      ll = "exa -lag";
-      lt = "exa -laT --level=2";
+      ll = "eza -lag";
+      lt = "eza -laT --level=2";
       ql = "qlmanage -p";  # quicklook -- MacOS only
       sk = "kitten ssh";
     };
@@ -100,7 +104,7 @@ in
     };
     git = import ./programs/git.nix { inherit config; };
     fish = import ./programs/fish { inherit pkgs; };
-    zsh = import ./programs/zsh.nix { inherit pkgs; };
+    zsh = import ./programs/zsh.nix { inherit pkgs config; };
     starship = import ./programs/starship.nix;
     kitty = import ./programs/kitty { inherit config; };
     bat = import ./programs/bat;
