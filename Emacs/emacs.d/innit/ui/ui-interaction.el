@@ -20,13 +20,6 @@
   :hook ((text-mode prog-mode) . (lambda () (set-input-method "Agda")))
   :custom (default-input-method "Agda"))
 
-;; ;; 🙈
-;; (use-package evil
-;;   :straight t
-;;   :demand t
-;;   :config
-;;   (evil-mode 1))
-
 
 ;; Help me remember where to plonk my next digit
 (use-package which-key
@@ -35,17 +28,6 @@
   :commands which-key-mode
   :config
   (which-key-mode))
-
-;; Text interaction
-;; Delete active/selected text when inserting (yanking) for fewer surprises.
-(delete-selection-mode t)
- 
-;; Enable minibuffers-in-minibuffers-in-minibuffers, and show how deep they go:
-(setq enable-recursive-minibuffers t)
-(minibuffer-depth-indicate-mode)
-
-;; General Keybindings
-(global-set-key (kbd "s-Z") #'undo-redo)
 
 
 ;; Cursors, selections, regions, curses
@@ -110,7 +92,18 @@
   ;; Emacs 28 and thereafter: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
   (setq read-extended-command-predicate
-        #'command-completion-default-include-p))
+        #'command-completion-default-include-p)
+  
+  ;; Text interaction
+  ;; Delete active/selected text when inserting (yanking) for fewer surprises.
+  (delete-selection-mode t)
+  
+  ;; Enable minibuffers-in-minibuffers-in-minibuffers, and show how deep they go:
+  (setq enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode)
+
+  ;; General Keybindings
+  (global-set-key (kbd "s-Z") #'undo-redo))
 
 ;; Cursor as a bar
 (setq-default cursor-type 'bar)
