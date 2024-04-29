@@ -5,11 +5,13 @@
 
 
 (defconst font--fixed-width-family
-  "MonoLisa"
+  "JuliaMono"
   "The font family used for fixed-with circumstances.
 Unless otherwise stated.")
 
-(progn
+(use-package emacs
+  :config
+  (setq-default line-spacing 4) ;; pleasant when using Julia Mono, among others
   (set-fontset-font t 'symbol
                     (font-spec :family font--fixed-width-family))
   (set-fontset-font t 'symbol
@@ -30,16 +32,16 @@ Unless otherwise stated.")
 		      :height 140
 		      :inherit 'default)
 
-  ;; Make the line numbers match the system aesthetic (TODO: is this UI? what about Linux?)
+  ;; Make the line numbers match the system aesthetic
   ;; see: ui/ui-framing.el
   (set-face-attribute 'line-number nil
                       :font "SF Mono"
                       :weight 'light
-                      :foreground "grey")
+                      :foreground "#d3d1c9")
   (set-face-attribute 'line-number-current-line nil
                       :font "SF Mono"
                       :weight 'medium
-                      :foreground "black")
+                      :foreground "#48463d")
 
   (set-face-attribute 'minibuffer-prompt nil
                       :font "SF Mono"

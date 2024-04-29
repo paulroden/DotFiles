@@ -123,41 +123,39 @@
 	  gfm-mode)
 	 . olivetti-mode))
 
+(use-package emacs
+  :custom
+  ;; Line numbers
+  (setq-default display-line-numbers-type 'relative
+		display-line-numbers-current-absolute t
+		display-line-numbers-width 5
+		display-line-numbers-widen t)
+  :init
+  ;; disable line numbers...
+  (global-display-line-numbers-mode -1)
+  ;;...unless working in most modes
+  (mapc
+   (lambda (mode) (add-hook mode #'display-line-numbers-mode))
+   '(agda2-mode
+     conf-mode-hook
+     haskell-cabal-mode-hook
+     makefile-hook
+     nix-mode
+     org-mode-hook
+     prog-mode-hook
+     python-mode-hook
+     sh-mode-hook
+     text-mode-hook))
+  
+  ;; New Frames Open in the Scratch Buffer
+  (global-set-key (kbd "s-n")
+		  #'(lambda ()
+		      (interactive)
+		      (make-frame)
+		      (switch-to-buffer "*scratch*")))
 
-;; Line numbers
-(setq-default display-line-numbers-type 'relative
-              display-line-numbers-current-absolute t
-              display-line-numbers-width 5
-              display-line-numbers-widen t)
-
-;; disable line numbers...
-(global-display-line-numbers-mode -1)
-
-;;...unless working in most modes
-(mapc
- (lambda (mode) (add-hook mode #'display-line-numbers-mode))
- '(agda2-mode
-   conf-mode-hook
-   haskell-cabal-mode-hook
-   makefile-hook
-   nix-mode
-   org-mode-hook
-   prog-mode-hook
-   python-mode-hook
-   sh-mode-hook
-   text-mode-hook))
-
-
-;;; New Frames Open in the Scratch Buffer
-(global-set-key (kbd "s-n")
-		#'(lambda ()
-		    (interactive)
-		    (make-frame)
-		    (switch-to-buffer "*scratch*")))
-
-;;; Window Frame Sizing
-(global-set-key (kbd "H-f") #'toggle-frame-fullscreen)
-
+  ;; Window Frame Sizing
+  (global-set-key (kbd "H-f") #'toggle-frame-fullscreen))
 
 
 (provide 'ui-framing)
