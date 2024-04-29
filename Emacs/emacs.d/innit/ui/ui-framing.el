@@ -71,16 +71,19 @@
   (treemacs-follow-mode t)
   (treemacs-project-follow-mode t)
   (treemacs-filewatch-mode t)
-  (treemacs-file-event-delay 1000)
+  (treemacs-file-event-delay 400)
   :config
   (setq treemacs-fringe-indicator-mode 'only-when-focused)
   :hook
   ;; remove the mode-line from treemacs sidebar
   (treemacs-mode . (lambda () (setq mode-line-format nil)))
   :custom-face
-  (treemacs-root-face ((t (:family "SF Mono" :underline nil :weight semi-bold :height 1.0))))
-  (treemacs-file-face ((t (:family "SF Mono" :underline nil :weight semi-light :height 1.0))))
-  (treemacs-directory-face ((t (:family "SF Mono" :underline nil :weight normal :height 1.0)))))
+  (treemacs-root-face ((t (:family "SF Mono" :underline nil :weight semi-bold :height 0.95))))
+  (treemacs-file-face ((t (:family "SF Mono" :underline nil :weight semi-light :height 0.95))))
+  (treemacs-directory-face ((t (:family "SF Mono" :underline nil :weight light :height 0.95))))
+  (treemacs-git-ignored-face ((t (:family "SF Mono" :underline nil :weight light :height 0.95 :slant normal :foreground "#d3d1c9"))))
+  (treemacs-git-modified-face ((t (:family "SF Mono" :underline (:color "#f7dc66") :weight normal :height 0.95))))
+  (treemacs-git-added-face ((t (:family "SF Mono" :underline (:color "#2f9961") :weight normal :height 0.95)))))
 
 (use-package treemacs-magit
   :straight t
