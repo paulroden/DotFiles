@@ -72,6 +72,11 @@
   :custom (flycheck-display-errors-delay 0.2)
   :init (global-flycheck-mode))
 
+(use-package flymake-flycheck
+  :straight t
+  :hook
+  (flymake-mode-hook . flymake-flycheck-auto))
+
 ;;; but ATempt To Repair At Point
 ;;
 (use-package attrap
