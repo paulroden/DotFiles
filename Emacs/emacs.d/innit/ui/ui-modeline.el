@@ -3,21 +3,6 @@
 ;;; 
 ;;; Code:
 
-;; Modeline Styling
-(let ((family "SF Mono")
-      (weight 'semi-light)
-      (size  130))
-  (custom-set-faces
-   `(mode-line
-     ((t (:family ,family :weight ,weight :size ,size :box (:line-width (0 . 1))))))
-   `(mode-line-active
-     ((t (:family ,family :weight ,weight :size ,size :box (:line-width (0 . 1))))))
-   `(mode-line-inactive
-     ((t (:family ,family :weight ,weight :size ,size :box (:line-width (0 . 1))))))
-   `(mode-line-highlight
-     ((t (:family ,family :weight ,weight :size ,size :box (:line-width (0 . 1))))))))
-
-
 (use-package all-the-icons
   :straight t
   :demand t)
@@ -36,15 +21,27 @@
   (lambda-line-gui-mod-symbol " ⊙ ")
   (lambda-line-gui-ro-symbol  " ● ")
   (lambda-line-symbol-position -0.05)
-  (lambda-line-vc-symbol " 􀙠 ")
+  (lambda-line-vc-symbol " @ ")
   :custom-face
   (lambda-line-active-status-RW ((t (:foreground "#2f9961"))))
-  (lambda-line-active-status-RO ((t (:foreground "#f7dc66"))))
-  (lambda-line-active-status-MD ((t (:foreground "#f1184c"))))
-  :init (lambda-line-mode))  ;; why init works here, but not config, I am not sure.
-;; ;; (progn
-;; ;;   (message "lambda-line-mode available")
-;; ;;   (lambda-line-mode))
+  (lambda-line-active-status-RO ((t (:foreground "#f1184c"))))
+  (lambda-line-active-status-MD ((t (:foreground "#f7dc66"))))
+  :config
+  ;; Modeline Styling
+  (let ((family "SF Mono")
+	(weight 'semi-light)
+	(size 130))
+    (custom-set-faces
+     `(mode-line
+       ((t (:family ,family :weight ,weight :height ,size :box (:line-width (0 . 1))))))
+     `(mode-line-active
+       ((t (:family ,family :weight ,weight :height ,size :box (:line-width (0 . 1))))))
+     `(mode-line-inactive
+       ((t (:family ,family :weight ,weight :height ,size :box (:line-width (0 . 1))))))
+     `(mode-line-highlight
+       ((t (:family ,family :weight ,weight :height ,size :box (:line-width (0 . 1))))))))
+  :init
+  (lambda-line-mode))  ;; why init works here, but not config, I am not sure.
 
 ;; ;; ;; Show current column number
 ;; ;; (column-number-mode +1)
