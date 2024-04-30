@@ -81,6 +81,10 @@ Unless otherwise stated.")
   (global-ligature-mode t)
   :hook (haskell-mode . ligature-mode))
 
+;; Useful tool for debugging font lock issues
+;; https://github.com/Lindydancer/font-lock-studio
+(use-package font-lock-studio
+  :straight t)
 
 (provide 'innit-typography)
 ;;; innit-typography.el ends here.
