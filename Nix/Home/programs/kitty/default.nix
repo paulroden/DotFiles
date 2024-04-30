@@ -2,7 +2,7 @@
 {
   enable = true;
   font = {
-    name = "MonoLisa";
+    name = "JuliaMono";
     size = 14;
   };
   theme = "Alabaster Dark";
