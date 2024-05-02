@@ -5,7 +5,18 @@
 
 ;;; Tree Sitter makes working in many languages better.
 ;; This has recently become part of Emacs' core (as of 29):
-;;   https://archive.casouri.cc/note/2023/tree-sitter-in-emacs-29/index.html
+;;   https://archive.casouri.cc/note/2023/tree-sitter-in-emacs-29/index.
+(use-package treesit
+  :straight (:type built-in)
+  :config
+  ;; additional treesitter grammars added below
+  (add-to-list 'treesit-language-source-alist '(nu "https://github.com/nushell/tree-sitter-nu"))
+  (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst")))
+
+(use-package tree-sitter-langs
+  :ensure t
+  :after tree-sitter)
+
 ;; `treesit-auto' helps with migrating to the new {lang}-ts-mode instances:
 ;;   https://robbmann.io/posts/emacs-treesit-auto/
 (use-package treesit-auto
@@ -317,7 +328,6 @@
   :straight t)
 
 
-
 ;;; Shells 🐚
 ;; Fish
 (use-package fish-mode
@@ -330,6 +340,19 @@
    ("zshrc$"  . sh-mode))
   :hook (sh-mode . eglot-ensure))
 
+;; Nu 🐚
+(use-package nushell-ts-mode
+  :straight (nushell-ts-mode :type git :host github :repo "herbertjones/nushell-ts-mode")
+  :mode ("\\.nu\\'" . nushell-ts-mode)
+  ;; :config
+  ;; (require 'nushell-ts-babel)
+  ;; (defun hfj/nushell/mode-hook ()
+  ;;   (corfu-mode 1)
+  ;;   (highlight-parentheses-mode 1)
+  ;;   (electric-pair-local-mode 1)
+  ;;   (electric-indent-local-mode 1))
+  ;; (add-hook 'nushell-ts-mode-hook 'hfj/nushell/mode-hook))
+  )
 
 ;;; GraphViz
 (use-package graphviz-dot-mode
@@ -342,6 +365,17 @@
   (TeX-parse-self t)
   ;; language server provided by `digestif'   (via nix from lua53Packages.digestif)
   :hook (tex-mode . eglot-ensure))
+
+;;; Typst
+(use-package typst-ts-mode
+  :straight (:type git :host sourcehut :repo "meow_king/typst-ts-mode" :files (:defaults "*.el"))
+  :custom
+  ;; don't add "--open" if you'd like `watch` to be an error detector
+  (typst-ts-mode-watch-options "--open")
+  
+  ;; experimental settings (I'm the main dev, so I enable these)
+  (typst-ts-mode-enable-raw-blocks-highlight t)
+  (typst-ts-mode-highlight-raw-blocks-at-startup t))
 
 
 ;;; Markdown

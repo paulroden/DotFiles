@@ -5,12 +5,26 @@ let
   homeDirectory = "/Users/${username}";
   homebrewRoot = "/opt/homebrew";
   frameworks = pkgs.darwin.apple_sdk.frameworks;
-  cFlags = "-L${pkgs.libiconv}/include -L${homebrewRoot}/include -F${frameworks.CoreFoundation}/Library/Frameworks $CFLAGS";
-  linkerFlags = "-L${pkgs.libiconv}/lib -L${homebrewRoot}/lib -F${frameworks.CoreFoundation}/Library/Frameworks -framework CoreFoundation $LDFLAGS";
+  cFlags = lib.concatStringsSep " " [
+    "-L${pkgs.libiconv}/include"
+    "-L${homebrewRoot}/include"
+    "-F${frameworks.CoreFoundation}/Library/Frameworks"
+    "$CFLAGS"
+  ];
+  linkerFlags = lib.concatStringsSep " " [
+    "-L${pkgs.libiconv}/lib"
+    "-L${homebrewRoot}/lib"
+    "-F${frameworks.CoreFoundation}/Library/Frameworks"
+    "-framework CoreFoundation"
+    "$LDFLAGS"
+  ];
   libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib ${homebrewRoot}/lib";
 in
 {
   imports = [ ./dock-items.nix ];
+  xdg = {
+    enable = true;
+  };
   home = {
     stateVersion = "22.11";
     inherit username;
@@ -105,11 +119,13 @@ in
     git = import ./programs/git.nix { inherit config; };
     fish = import ./programs/fish { inherit pkgs; };
     zsh = import ./programs/zsh.nix { inherit pkgs config; };
+    nushell = import ./programs/nu { inherit pkgs config; };
     starship = import ./programs/starship.nix;
     kitty = import ./programs/kitty { inherit config; };
     bat = import ./programs/bat;
     vscode = import ./programs/vscode { inherit pkgs; };
   };
+  
   local.dock = import ./programs/dock.nix { inherit config pkgs; };
   
   targets.darwin.defaults = {

@@ -3,6 +3,7 @@
   settings = {
     shell = {
       fish_indicator = "◉";
+      nu_indicator = "ヌ";
       zsh_indicator = "ⓩ";
       powershell_indicator = "_ ";
       unknown_indicator = "¿sh? ";

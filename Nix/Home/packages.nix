@@ -91,6 +91,7 @@ let
   nix-your-shell
   nodejs
   nodePackages.bash-language-server
+  nushell
   obsidian
   onefetch
   ouch

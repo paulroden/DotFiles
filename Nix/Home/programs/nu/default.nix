@@ -1,8 +1,7 @@
-{ lib, config, ... }:
+{ pkgs, config, ... }:
 {
   enable = true;
   # envFile = env_nu;
-  configFile = ./config.nu ;
-  # envFile.source = env_nu;
-  # configFile.source = config_nu;
+  configFile.source = ./config.nu ;
+  envFile.source = ./env.nu;
 }
