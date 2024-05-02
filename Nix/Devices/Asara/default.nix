@@ -1,4 +1,4 @@
-{ config, lib, nixpkgs, pkgs,  ... }:
+{ config, lib, pkgs,  ... }:
 {
   imports = [ ./Impure/homebrew.nix ];
 
@@ -9,7 +9,7 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacsGit;
+      package = pkgs.emacs;
     };
 
     skhd = {
@@ -66,6 +66,11 @@
       "2620:fe::9"
       "9.9.9.9"
       "149.112.112.112"
+      # Cloudflare
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+      "1.1.1.1"
+      "1.0.0.1"
     ];
   };
   
@@ -76,11 +81,8 @@
       pkgs.charis-sil
       pkgs.crimson-pro
       pkgs.fira
-      pkgs.fira-code
-      pkgs.fira-code-symbols
       pkgs.font-awesome
       pkgs.gyre-fonts
-      pkgs.hasklig
       pkgs.ibm-plex
       pkgs.inriafonts
       pkgs.iosevka-comfy.comfy
@@ -96,9 +98,9 @@
       pkgs.mononoki
       pkgs.mplus-outline-fonts.githubRelease
       pkgs.nacelle
-      pkgs.noto-fonts
-      pkgs.noto-fonts-cjk
-      pkgs.noto-fonts-emoji
+      # pkgs.noto-fonts
+      # pkgs.noto-fonts-cjk
+      # pkgs.noto-fonts-emoji
       pkgs.open-sans
       pkgs.sarasa-gothic
       pkgs.source-code-pro
