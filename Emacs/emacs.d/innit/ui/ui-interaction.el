@@ -48,6 +48,17 @@
            text-mode)
           . electric-pair-mode)))
 
+;; Parens
+(use-package highlight-parentheses
+  :straight t
+  :custom
+  (highlight-parentheses-highlight-adjacent t)
+  (highlight-parentheses-colors
+   (mapcar (lambda (l)
+	  (apply
+	   #'color-rgb-to-hex (append (color-hsl-to-rgb 0.35 0.60 l) '(2))))
+	   (number-sequence 0.42 0.12 -0.05))))
+
 ;;; Menus and Navigation
 ;; Avy navygation
 (use-package avy
@@ -110,3 +121,4 @@
 
 (provide 'ui-interaction)
 ;;; ui-interaction.el ends here.
+

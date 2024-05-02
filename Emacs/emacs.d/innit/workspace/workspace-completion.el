@@ -1,6 +1,6 @@
 ;;; workspace-completion.el --- Ways to get from start to finish  -*- coding: utf-8; lexical-binding: t; -*-
 ;;; Commentary:
-;;; 
+;;;
 ;;; Code:
 
 ;;; Orderless completion style (https://github.com/oantolin/orderless)
@@ -13,8 +13,6 @@
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
-
-(setq completion-styles '(basic substring partial-completion flex))
 
 
 ;;; Consult:
@@ -81,25 +79,25 @@
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref)
   (consult-preview-key '(:debounce 0.25 any))
-  
+
   ;; Enable automatic preview at point in the *Completions* buffer.
   :hook (completion-list-mode . consult-preview-at-point-mode)
-  
+
   :init
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
   (setq register-preview-delay 0.3
         register-preview-function #'consult-register-format)
-  
+
   ;; Optionally tweak the register preview window.
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
-  
+
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-  
+
   :config
   ;; Set preview key, first in general, then in context for specific commands
   (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
@@ -179,110 +177,71 @@
   (marginalia-mode))
 
 
-;; Try Company
-;; taken from https://github.com/jwiegley/dot-emacs/blob/54ffb572f10e5a9aa46e8ca2acba9a14d31fae10/init.el#L798
-(use-package company
-  :defer 5
-;;  :blackout t
-  :commands (company-mode company-indent-or-complete-common)
-  :init
-  :config
-  ;; From https://github.com/company-mode/company-mode/issues/87
-  ;; See also https://github.com/company-mode/company-mode/issues/123
-  (defadvice company-pseudo-tooltip-unless-just-one-frontend
-      (around only-show-tooltip-when-invoked activate)
-    (when (company-explicit-action-p)
-      ad-do-it))
-  (let ((map company-active-map))
-    (mapc
-     (lambda (x)
-       (define-key map (format "%d" x) 'ora-company-number))
-     (number-sequence 0 9))
-    (define-key map " " (lambda ()
-                          (interactive)
-                          (company-abort)
-                          (self-insert-command 1))))
-  (defun check-expansion ()
-    (save-excursion
-      (if (outline-on-heading-p t)
-          nil
-        (if (looking-at "\\_>") t
-          (backward-char 1)
-          (if (looking-at "\\.") t
-            (backward-char 1)
-            (if (looking-at "->") t nil))))))
-
-  (define-key company-mode-map [tab]
-	      '(menu-item "maybe-company-expand" nil
-			  :filter (lambda (&optional _)
-				    (when (check-expansion)
-				      #'company-complete-common))))
-  (global-company-mode 1))
-
 (use-package company-auctex
   :after (company latex))
+
 
 (use-package company-cabal
   :straight t
   :after (company haskell-cabal))
 
-;; ;; Corfu: a beautiful place, complete at point
-;; ;; see also: `emacs customisations in ui/ui-interaction.el
-;; (use-package corfu
-;;   :straight t
-;;   :custom
-;;   (corfu-cycle t)
-;;   (corfu-auto t)
-;;   :config
-;;   (setq completion-category-overrides '((eglot (styles orderless))))
-;;   (setq-default eglot-workspace-configuration
-;;       '((haskell
-;;          (maxCompletions . 200))))
-;;   :init
-;;   (global-corfu-mode))
+;; Corfu: a beautiful place, complete at point
+;; see also: `emacs customisations in ui/ui-interaction.el
+(use-package corfu
+  :straight t
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  :config
+  (setq completion-category-overrides '((eglot (styles orderless))))
+  (setq-default eglot-workspace-configuration
+      '((haskell
+         (maxCompletions . 200))))
+  :init
+  (global-corfu-mode))
 
 ;;;; And wear a Cape to Corfu
 ;; (Completion At PointE)
-;; (use-package cape
-;;   :straight t
-;;   ;; Bind dedicated completion commands
-;;   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
-;;   :bind (("C-c p p" . completion-at-point) ;; capf
-;;          ("C-c p t" . complete-tag)        ;; etags
-;;          ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
-;;          ("C-c p h" . cape-history)
-;;          ("C-c p f" . cape-file)
-;;          ("C-c p k" . cape-keyword)
-;;          ("C-c p s" . cape-symbol)
-;;          ("C-c p a" . cape-abbrev)
-;;          ("C-c p i" . cape-ispell)
-;;          ("C-c p l" . cape-line)
-;;          ("C-c p w" . cape-dict)
-;;          ("C-c p \\" . cape-tex)
-;;          ("C-c p _" . cape-tex)
-;;          ("C-c p ^" . cape-tex)
-;;          ("C-c p &" . cape-sgml)
-;;          ("C-c p r" . cape-rfc1345))
-;;   :init
-;;   ;; Add `completion-at-point-functions', used by `completion-at-point'.
-;;   (add-to-list 'completion-at-point-functions #'cape-keyword)
-;;   (add-to-list 'completion-at-point-functions #'cape-symbol)
-;;   (add-to-list 'completion-at-point-functions #'cape-file)
-;;   (add-to-list 'completion-at-point-functions #'cape-history)
-;;   (add-to-list 'completion-at-point-functions #'cape-tex)
-;;   (add-to-list 'completion-at-point-functions #'cape-ispell)
-;;   ;; Use Company backends as Capfs.
-;;   (setq-local completion-at-point-functions
-;;   (mapcar #'cape-company-to-capf
-;;     (list #'company-files #'company-ispell #'company-dabbrev))))
+(use-package cape
+  :straight t
+  ;; Bind dedicated completion commands
+  ;; Alternative prefix keys: C-c p, M-p, M-+, ...
+  :bind (("C-c p p" . completion-at-point) ;; capf
+         ("C-c p t" . complete-tag)        ;; etags
+         ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
+         ("C-c p h" . cape-history)
+         ("C-c p f" . cape-file)
+         ("C-c p k" . cape-keyword)
+         ("C-c p s" . cape-symbol)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p i" . cape-ispell)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict)
+         ("C-c p \\" . cape-tex)
+         ("C-c p _" . cape-tex)
+         ("C-c p ^" . cape-tex)
+         ("C-c p &" . cape-sgml)
+         ("C-c p r" . cape-rfc1345))
+  :init
+  ;; Add `completion-at-point-functions', used by `completion-at-point'.
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-symbol)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-history)
+  (add-to-list 'completion-at-point-functions #'cape-tex)
+  (add-to-list 'completion-at-point-functions #'cape-ispell)
+  ;; Use Company backends as Capfs.
+  (setq-local completion-at-point-functions
+  (mapcar #'cape-company-to-capf
+    (list #'company-files #'company-ispell #'company-dabbrev))))
 
-;; (use-package kind-icon
-;;   :ensure t
-;;   :after corfu
-;;   :custom
-;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-;;   :config
-;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+(use-package kind-icon
+  :straight t
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 
 (provide 'workspace-completion)
