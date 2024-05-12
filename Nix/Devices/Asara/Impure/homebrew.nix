@@ -14,6 +14,7 @@
       
     ];
     casks = [
+      "MonitorControl"
       "acorn"
       "apparency"
       "discord"
@@ -28,7 +29,7 @@
       "raycast"
       "suspicious-package"
       "syntax-highlight"
-      "MonitorControl"
+      "zed"
       # fonts from `homebrew-cask-fonts`
       "font-cormorant"
       "font-eb-garamond"
