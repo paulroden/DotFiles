@@ -1,14 +1,8 @@
 pkgs:
 with pkgs;
 let
-  hasxe = x: haskell.lib.justStaticExecutables x;
+  hasxe = haskell.lib.justStaticExecutables;
   haskg = haskellPackages;
-    # TODO: add this pretty icon upsteam to enable an override everywhere (prob. in soft-serve :)
-    # emacs' = emacs.overrideAttrs (prev: {
-    #   postInstall = (prev.postInstall or "") + ''
-    # cp ${./programs/emacs/nobu417-big-sur.icns} $out/Applications/Emacs.app/Contents/Resources/Emacs.icns
-    # '';
-    # });
  in
 [
   (agda.withPackages (p: [
@@ -37,7 +31,7 @@ let
   direnv
   dockutil
   du-dust
-  emacs
+  emacs'
   emacs-lsp-booster
   emacs-vterm
   emacsPackages.pdf-tools

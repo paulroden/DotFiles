@@ -1,4 +1,4 @@
-{ config, pkgs, }:
+{ config, pkgs, ... }:
 {
   enable = true;
   apps = [
@@ -9,7 +9,7 @@
     "/System/Applications/Music.app/"
     "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/"  # this one is super-special!
     "/Applications/NetNewsWire.app/"
-    "${pkgs.emacs}/Applications/Emacs.app/"
+    "${pkgs.emacs'}/Applications/Emacs.app/"
     "/Applications/Zed.app/"
     "/Applications/iA Writer.app/"
     "${config.home.homeDirectory}/Applications/ChatGPT.app"
