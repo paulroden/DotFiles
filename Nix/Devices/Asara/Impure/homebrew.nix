@@ -27,6 +27,7 @@
       "orbstack"
       "racket"  # cask version includes Dr. Racket for Mac
       "raycast"
+      "soulver"
       "suspicious-package"
       "syntax-highlight"
       "zed"
