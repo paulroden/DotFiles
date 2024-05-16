@@ -1,4 +1,4 @@
-{ config, lib, pkgs,  ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [ ./Impure/homebrew.nix ];
 
@@ -9,7 +9,7 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacs;
+      package = pkgs.emacs';
     };
 
     skhd = {

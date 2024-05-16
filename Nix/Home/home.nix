@@ -37,20 +37,14 @@ in
       HOMEBREW_REPOSITORY = homebrewRoot;
       HOMEBREW_PREFIX = homebrewRoot;
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
-      # emacs-vterm ref
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
-      # emacs pdf-tools:
       EMACS_PDF_TOOLS = "${pkgs.emacsPackages.pdf-tools}";
-      # linking libiconv from clang seems to be a pervasive issue on MacOS with aarch...
       LIBRARY_PATH = libraryPath;
-      # linker stuff - it never ends...
       CFLAGS = cFlags;
       CPPFLAGS = cFlags;
       LDFLAGS = linkerFlags;
       NIX_LDFLAGS = lib.replaceStrings ["LDFLAGS"] ["NIX_LDFLAGS"] linkerFlags;
-      # this effing works 🦀🦀🦀 !!
       RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
-
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };
@@ -82,6 +76,7 @@ in
       lt = "eza -laT --level=2";
       ql = "qlmanage -p";  # quicklook -- MacOS only
       sk = "kitten ssh";
+      emacs = "${pkgs.emacs'}/Applications/Emacs.app/Contents/MacOS/Emacs";
     };
 
     # GHCI config
