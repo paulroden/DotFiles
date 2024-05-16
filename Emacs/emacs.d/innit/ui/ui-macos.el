@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; 
 ;;; Code:
+(require 'innit-useful)
 
 ;; The world's best trackpads do not have a middle-click function.
 (define-key key-translation-map (kbd "<s-mouse-1>") (kbd "<mouse-2>"))
@@ -29,14 +30,19 @@
 ;; Default frame dimensions
 (setq default-frame-alist
       (append default-frame-alist
-              '(;; frame position from top of screen [px]
-		(left . 300)
-		;; frame position from top of screen [px]
-		(top . 200)
-		;; width of frame [char width]
-		(width . 200)
-		;; height of frame [char height]
-		(height . 50))))
+	      (append
+		 ;; derive width and height from display size with the below factors
+		 (let ((scale-factors
+			`((width . ,(* 3 (frame-char-width)))
+			  (height . ,(* 3 (frame-char-height))))))
+		   (scale-keys #'/ scale-factors (or (get-mouse-pointer-display-dimensions)
+						     (get-display-dimensions))))
+		 ;; derive offset from top left as 10% of display
+		 (rename-keys
+		  '((width . left)
+		    (height . top))
+		  (scale-keys #'/ 10 (or (get-mouse-pointer-display-dimensions)
+					 (get-display-dimensions)))))))
 
 (use-package ns-auto-titlebar
   :if (memq window-system '(mac ns))

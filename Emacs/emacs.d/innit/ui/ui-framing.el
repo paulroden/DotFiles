@@ -4,9 +4,20 @@
 ;;; Code:
 
 ;; Tame the frames
-;; Handling the various windows, frames, and popups that Emacs throws around can feel far from a perfect world. There are a number of packages which aim to assist with this: [[https://depp.brause.cc/shackle/][shackle]] and [[https://github.com/karthink/popper][popper]] both aim to group windows depending on usage and enable more sensible organisation; meanwhile [[https://github.com/bmag/emacs-purpose][purpose.el]], [[https://github.com/nex3/perspective-el][perspective-el]] and, perhaps, [[https://github.com/knu/elscreen][ElScreen]] aim more towards configuring workspaces to hold a group of windows together. (Further art includes: ~winner-mode~ – which Popper aims to supplant; [[https://github.com/alphapapa/bufler.el][bufler]], popwin)
+;; Handling the various windows, frames, and popups that Emacs throws around
+;; can feel far from a perfect world. There are a number of packages which aim
+;; to assist with this:
+;; [[https://depp.brause.cc/shackle/][shackle]] and [[https://github.com/karthink/popper][popper]]
+;; both aim to group windows depending on usage and enable more sensible
+;; organisation; meanwhile [[https://github.com/bmag/emacs-purpose][purpose.el]],
+;; [[https://github.com/nex3/perspective-el][perspective-el]] and, perhaps,
+;; [[https://github.com/knu/elscreen][ElScreen]] aim more towards configuring
+;; workspaces to hold a group of windows together. (Further art includes:
+;; ~winner-mode~ – which Popper aims to supplant; [[https://github.com/alphapapa/bufler.el][bufler]], popwin)
 ;; 💽
-;; Popper appeals as the most [[https://www.youtube.com/watch?v=E-xUNlZi3rI][promising]] and tasteful, so we will run with that for now. TODO: Shackle can complement Popper and tell which windows should sit where.
+;; Popper appeals as the most [[https://www.youtube.com/watch?v=E-xUNlZi3rI][promising]]
+;; and tasteful, so we will run with that for now. TODO: Shackle can complement
+;; Popper and tell which windows should sit where.
 (use-package popper
   :straight t
   :bind (("C-`"   . popper-toggle-latest)
