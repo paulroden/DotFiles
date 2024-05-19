@@ -56,6 +56,10 @@
     ];
   };
 
+  security = {
+    pam.enableSudoTouchIdAuth = true;
+  };
+
   networking = {
     knownNetworkServices = [
       "Wi-Fi"
