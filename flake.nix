@@ -56,18 +56,7 @@
         fenix.overlays.default
         soft-serve.overlays.default
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
-        (final: prev: {
-          dockutil = prev.dockutil.overrideAttrs (_: {
-            src = let version = "3.1.3";
-            in prev.fetchurl {
-              url =
-                "https://github.com/kcrawford/dockutil/releases/download/${version}/dockutil-${version}.pkg";
-                sha256 =
-                  "f60db8273fe80d7c4824588bedb538a5387675c3917edb0010dab9f52d3f2582";
-            };
-          });
-        })
-
+        (import ./Nix/Home/programs/dock/dockutil-patch.nix)
       ];
       config.allowUnfree = true;
     };

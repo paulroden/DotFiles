@@ -121,7 +121,7 @@ in
     vscode = import ./programs/vscode { inherit pkgs; };
   };
   
-  local.dock = import ./programs/dock.nix { inherit config pkgs; };
+  local.dock = import ./programs/dock { inherit config pkgs; };
   
   targets.darwin.defaults = {
     "com.apple.dock" = {
