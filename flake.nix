@@ -55,6 +55,7 @@
         emacs-lsp-booster.overlays.default
         fenix.overlays.default
         soft-serve.overlays.default
+        (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
         (final: prev: {
           dockutil = prev.dockutil.overrideAttrs (_: {
             src = let version = "3.1.3";
@@ -66,36 +67,7 @@
             };
           });
         })
-        (final: prev: {
-          emacs' = prev.emacs.overrideAttrs (prev: {
-            # Use the beautiful squircle icon from Noboyuki Sato
-            postUnpack = (prev.postUnpack or "") + ''
-              cp ${./Nix/Home/programs/emacs/nobu417-big-sur.icns} $sourceRoot/nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns
-              '';
-            patches = (prev.patches or []) ++ [
-              # Fix OS window role (needed for window managers like yabai)
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
-                sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-              })
-              # Use poll instead of select to get file descriptors
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/poll.patch";
-                sha256 = "sha256-jN9MlD8/ZrnLuP2/HUXXEVVd6A+aRZNYFdZF8ReJGfY=";
-              })
-              # leave frame selecting to Emacs
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/no-frame-refocus-cocoa.patch";
-                sha256 = "sha256-QLGplGoRpM4qgrIAJIbVJJsa4xj34axwT3LiWt++j/c=";
-              })
-              # Make Emacs aware of OS-level light/dark mode
-              (pkgs.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
-                sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
-              })
-            ];
-          });
-        })
+
       ];
       config.allowUnfree = true;
     };
