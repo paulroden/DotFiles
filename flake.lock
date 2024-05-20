@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "crane": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1710886643,
-        "narHash": "sha256-saTZuv9YeZ9COHPuj8oedGdUwJZcbQ3vyRqe7NVJMsQ=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "5bace74e9a65165c918205cf67ad3977fe79c584",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "ref": "v0.16.3",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -59,6 +38,7 @@
       "original": {
         "owner": "slotThe",
         "repo": "emacs-lsp-booster-flake",
+        "rev": "1a53bd820143236c49118c8f1fa588c86ef2d43c",
         "type": "github"
       }
     },
@@ -70,17 +50,17 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1711347842,
-        "narHash": "sha256-NEu85M2kpGlEBPVNSIB0nOSLWg3x6R3px5Nd+vthdsU=",
+        "lastModified": 1716186410,
+        "narHash": "sha256-U/5eHWooIohw8uF0cQd8ZQll8gMZxb0QeaVEGrXJCgY=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "12619df460ea671b1e94a5c2c8c17ca91cb86ebe",
+        "rev": "49bf3506637ee9f30ab589104f479ec61db5924c",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "12619df460ea671b1e94a5c2c8c17ca91cb86ebe",
+        "rev": "49bf3506637ee9f30ab589104f479ec61db5924c",
         "type": "github"
       }
     },
@@ -99,6 +79,7 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       }
     },
@@ -141,7 +122,6 @@
     },
     "root": {
       "inputs": {
-        "crane": "crane",
         "darwin": "darwin",
         "emacs-lsp-booster": "emacs-lsp-booster",
         "fenix": "fenix",

@@ -3,7 +3,9 @@
 
   inputs = {
 
-    flake-utils = { url = "github:numtide/flake-utils"; };
+    flake-utils = {
+      url = "github:numtide/flake-utils/b1d9ab70662946ef0850d488da1c9019f3a9752a";
+    };
 
     nixpkgs = {
       url = "github:NixOS/nixpkgs/5e39a5c1129d6a772175418025f51b0c3022f971";  
@@ -15,29 +17,22 @@
     };
 
     home-manager = {
-      url =
-        "github:nix-community/home-manager/017b12de5b899ef9b64e2c035ce257bfe95b8ae2";  # master @ 2024-03-11
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/017b12de5b899ef9b64e2c035ce257bfe95b8ae2";  # master @ 2024-03-11
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix/49bf3506637ee9f30ab589104f479ec61db5924c";  # master @ 2024-05-20
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-lsp-booster = {
-      url = "github:slotThe/emacs-lsp-booster-flake";
+      url = "github:slotThe/emacs-lsp-booster-flake/1a53bd820143236c49118c8f1fa588c86ef2d43c";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     soft-serve = {
       url = "github:paulroden/soft-serve";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fenix = {
-      url = "github:nix-community/fenix/12619df460ea671b1e94a5c2c8c17ca91cb86ebe";  # master @ 2024-03-25
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # crane for Rust, because it lifts cargo crates 🦀
-    crane = {
-      url = "github:ipetkov/crane/v0.16.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,7 +45,8 @@
     , emacs-lsp-booster
     , fenix
     , soft-serve
-    , ... }:
+    , ...
+    }:
   let
     system = "aarch64-darwin";
     pkgs = import nixpkgs {

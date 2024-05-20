@@ -111,11 +111,9 @@ let
   shfmt
   silver-searcher
   sioyek
-  slack  # UNFREE
   skhd
   socat
   starship
-  teams  # UNFR€€
   termpdfpy
   texlive.combined.scheme-small
   tldr
@@ -126,7 +124,6 @@ let
   xsv
   yq
   zlib
-  zoom-us  # UNFREE
   zulip-term
   zsh
   zsh-autocomplete
