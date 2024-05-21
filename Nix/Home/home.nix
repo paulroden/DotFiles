@@ -37,6 +37,7 @@ in
       HOMEBREW_REPOSITORY = homebrewRoot;
       HOMEBREW_PREFIX = homebrewRoot;
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
+      EMACS_EXEC = "${pkgs.emacs'}/Applications/Emacs.app/Contents/MacOS/Emacs";
       EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
       EMACS_PDF_TOOLS = "${pkgs.emacsPackages.pdf-tools}";
       LIBRARY_PATH = libraryPath;
