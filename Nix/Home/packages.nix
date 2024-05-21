@@ -119,6 +119,9 @@ let
   tldr
   tmux
   tree-sitter
+  typst
+  typst-lsp
+  typstfmt
   watchexec
   wget
   xsv
