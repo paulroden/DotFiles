@@ -43,6 +43,7 @@
      "\\*cargo-run\\*"
      "\\*rustic-compilation\\*"
      "\\*rustfmt\\*"
+     "\\*typst-ts-compilation\\*"
      "\\*Go Test\\*"
      "\\*interpretation\\*"
      "\\*Flymake diagnostics\\*"
@@ -54,7 +55,7 @@
      "^\\*vterm.*\\*$"  vterm-mode))
   ;; group by project.el project root, fall back to #'default-directory
   (popper-group-function 'popper-group-by-directory)
-  (popper-mode-line '(:eval (propertize " 🫧" 'face 'mode-line-emphasis))) ; cute ;)
+  (popper-mode-line '(:eval (propertize " 🫧" 'face 'mode-line-emphasis))) ; cute ♥
   (popper-window-height 22)
   :config
   (popper-mode t)
