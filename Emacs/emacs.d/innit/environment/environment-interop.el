@@ -54,6 +54,7 @@
 (eval-and-compile
   (defconst vterm-load-path (getenv "EMACS_VTERM_PATH")))
 
+;;; It's a secret, ssshutup..!
 
 ;;; Share `ssh-agent' information with Emacs
 ;;  (also `gpg-agent', but we're not there yet)
@@ -61,6 +62,25 @@
   :config
   (keychain-refresh-environment))
 
+;; Actually good:
+(use-package age
+  :straight (age :type git :host github :repo "anticomputer/age.el")
+  :demand t
+  :custom
+  (age-program "rage")
+  (age-default-identity "~/.ssh/id_ed25519")
+  (age-default-recipient
+   '("~/.ssh/id_ed25519.pub"
+     "~/.ssh/age_recovery.pub"))
+  :config
+  (age-file-enable))
+
+(use-package auth-sources
+  :straight (:type built-in)
+  :after age
+  :custom
+  (auth-sources
+	'((:source "~/.authinfo.age"))))
 
 ;; Remote control & TRAMP
 (use-package tramp
@@ -92,6 +112,23 @@
 	(expand-file-name "epdfinfo" pdf-tools-site-list-dir))
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-annot-activate-created-annotations t))
+
+(use-package gptel
+  :straight (:type git :host github :repo "karthink/gptel")
+  :config
+  (defun get-api-key (host)
+    (plist-get (car (auth-source-search :host (regxep-quote host))) :secret))
+  ;; default: OpenAPI ChatGPT
+  (setq gptel-api-key (get-api-key "api.openai.com"))
+  ;; Groq offers an OpenAI compatible API
+  (gptel-make-openai "Groq"
+    :host "api.groq.com"
+    :endpoint "/openai/v1/chat/completions"
+    :stream t
+    :key (get-api-key "api.groq.com")
+    :models '("mixtral-8x7b-32768"
+              "gemma-7b-it"
+              "llama2-70b-4096")))
 
 (provide 'environment-interop)
 ;;; environment-interop.el ends here.
