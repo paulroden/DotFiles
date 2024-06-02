@@ -27,7 +27,6 @@ let
   dhall-lsp-server
   dhall-nix
   dhall-nixpkgs
-  discord  # UNFREE
   direnv
   dockutil
   du-dust
@@ -92,6 +91,7 @@ let
   pandoc
   poetry
   (python312.withPackages(p: [
+    p.pip
     p.httpx
     p.ipython
     p.jupyterlab
