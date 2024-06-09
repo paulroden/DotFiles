@@ -15,7 +15,7 @@ let
   cabal2nix
   cachix
   chez-racket
-  clang_17
+  clang
   cmake
   colima
   darwin.apple_sdk.frameworks.CoreFoundation
@@ -46,15 +46,15 @@ let
   gnuplot
   go
   graphviz
-  haskell.compiler.ghc96
+  haskell.compiler.ghc910
+  haskg.hoogle
+  haskg.shake
   (hasxe haskg.fourmolu)
   (hasxe haskg.happy)
   (hasxe haskg.hlint)
-  (hasxe haskg.hoogle)
   (hasxe haskg.hpack)
   (hasxe haskg.hscolour)
   (hasxe haskg.pointfree)
-  (hasxe haskg.shake)
   helix
   # hexcurse
   htop

@@ -8,7 +8,7 @@
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/5e39a5c1129d6a772175418025f51b0c3022f971";  
+      url = "github:NixOS/nixpkgs/9d13dbb1ef2d0a6a6788d5b6fe4cbd727dd893c5";  
     };
 
     darwin = {
@@ -17,7 +17,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/017b12de5b899ef9b64e2c035ce257bfe95b8ae2";  # master @ 2024-03-11
+      url = "github:nix-community/home-manager/a7117efb3725e6197dd95424136f79147aa35e5b";  # master @ 2024-06-04
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -56,7 +56,6 @@
         fenix.overlays.default
         soft-serve.overlays.default
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
-        (import ./Nix/Home/programs/dock/dockutil-patch.nix)
       ];
       config.allowUnfree = true;
     };
