@@ -3,7 +3,7 @@ final: prev: pkgs: {
   emacs' = prev.emacs.overrideAttrs (prev: {
     # Use the beautiful squircle icon from Noboyuki Sato
     postUnpack = (prev.postUnpack or "") + ''
-      cp ${./nobu417-big-sur.icns} $sourceRoot/nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns
+      cp ${./icons/nobu417-big-sur.icns} $sourceRoot/nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns
     '';
     patches = 
       let patchesBaseURL =
