@@ -4,7 +4,7 @@ let
 in {
   enable = true;
   enableCompletion = true;
-  enableAutosuggestions = true;
+  autosuggestion.enable = true;
   inherit dotDir;
   history = {
     size       = 50000;
