@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 let
+  elmpkg = elmPackages;
   hasxe = haskell.lib.justStaticExecutables;
   haskg = haskellPackages;
  in
@@ -30,6 +31,9 @@ let
   direnv
   dockutil
   du-dust
+  elmpkg.elm
+  elmpkg.elm-format
+  elmpkg.elm-language-server
   emacs'
   emacs-lsp-booster
   emacs-vterm
