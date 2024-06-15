@@ -12,10 +12,9 @@
     "${pkgs.emacs'}/Applications/Emacs.app/"
     "/Applications/Zed.app/"
     "/Applications/iA Writer.app/"
-    "${config.home.homeDirectory}/Applications/ChatGPT.app"
     "/Applications/Soulver 3.app/"
     "/Applications/PDF Viewer.app/"
-    "/Applications/Collections.app/"
+    "/Applications/ChatGPT.app/"
   ];
   others = [
     {

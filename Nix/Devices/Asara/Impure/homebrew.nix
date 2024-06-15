@@ -17,6 +17,7 @@
       "MonitorControl"
       "acorn"
       "apparency"
+      "chatgpt"
       "discord"
       "focusrite-control-2"
       "jquake"
@@ -29,6 +30,7 @@
       "racket"  # cask version includes Dr. Racket for Mac
       "raycast"
       "soulver"
+      "soulver-cli"
       "suspicious-package"
       "syntax-highlight"
       "zed"
