@@ -1,3 +1,0 @@
-[submodule "Nix/Home/programs/kitty/kitty_search"]
-	path = Nix/Home/programs/kitty/kitty_search
-	url = https://github.com/trygveaa/kitty-kitten-search
