@@ -1,6 +1,5 @@
 { pkgs, config, lib, ... }:
 let
-  # TODO: consider ${config.xdg.dataHome} below?
   username = "paul";
   homeDirectory = "/Users/${username}";
   homebrewRoot = "/opt/homebrew";
@@ -19,6 +18,7 @@ let
     "$LDFLAGS"
   ];
   libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib ${homebrewRoot}/lib";
+  cargoPath =  "${config.xdg.dataHome}/cargo";
 in
 {
   imports = [ ./dock-items.nix ];
@@ -46,6 +46,7 @@ in
       LDFLAGS = linkerFlags;
       NIX_LDFLAGS = lib.replaceStrings ["LDFLAGS"] ["NIX_LDFLAGS"] linkerFlags;
       RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
+      CARGO_HOME = "${cargoPath}";
       # hack to clear the PATH inherited from the system environment
       PATH = "";
     };
@@ -53,7 +54,7 @@ in
     sessionPath = [
       "${config.home.profileDirectory}/bin"
       "/run/current-system/sw/bin/"
-      "${homeDirectory}/.cargo/bin"
+      "${cargoPath}/bin"
       "${homeDirectory}/.cabal/bin"
       "${homeDirectory}/.ghcup/bin"
       "/nix/var/nix/profiles/default/bin"
@@ -81,8 +82,8 @@ in
     };
 
     # GHCI config
-    file.".ghci".text =
-      '':set prompt "⋏ "
+    file.".ghci".text =''
+        :set prompt "⋏ "
         :def pf \str -> return $ ":! pointfree \"" ++ str ++ "\""
       '';
 
@@ -94,6 +95,8 @@ in
 
     # kitticon: https://github.com/hristost/kitty-alternative-icon
     file.".config/kitty/kitty.app.icns".source = ./programs/kitty/kitty.app.icns;
+    file.".config/kitty/search.py".source = ./programs/kitty/kitty_search/search.py;
+    file.".config/kitty/scroll_mark.py".source = ./programs/kitty/kitty_search/scroll_mark.py;
 
     # skhd config
     file.".config/skhd/skhdrc".source = ./programs/skhd/skhdrc;
@@ -111,6 +114,10 @@ in
       enable = true;
       nix-direnv.enable = true;
       enableBashIntegration = true;
+    };
+    man = {
+      enable = true;
+      generateCaches = false;
     };
     git = import ./programs/git.nix { inherit config; };
     fish = import ./programs/fish { inherit pkgs; };

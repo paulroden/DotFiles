@@ -38,6 +38,7 @@
     "cmd+t" = "new_tab_with_cwd";  #🍎
     "ctrl+shift+enter" = "new_window_with_cwd";
     "cmd+enter" = "new_window_with_cwd";  #🍎
+    "cmd+f" = "launch --location=hsplit --allow-remote-control kitty +kitten search.py @active-kitty-window-id";
   };
   darwinLaunchOptions = [
     "--single-instance"
