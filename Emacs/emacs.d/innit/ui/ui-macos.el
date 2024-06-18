@@ -1,6 +1,6 @@
 ;;; ui-macos.el --- UI Elements when on MacOS  -*- coding: utf-8; lexical-binding: t; -*-
 ;;; Commentary:
-;;; 
+;;;
 ;;; Code:
 (require 'innit-useful)
 
@@ -28,21 +28,23 @@
                 (ns-appearance . dark))))
 
 ;; Default frame dimensions
-(setq default-frame-alist
-      (append default-frame-alist
-	      (append
-		 ;; derive width and height from display size with the below factors
-		 (let ((scale-factors
-			`((width . ,(* 3 (frame-char-width)))
-			  (height . ,(* 3 (frame-char-height))))))
-		   (scale-keys #'/ scale-factors (or (get-mouse-pointer-display-dimensions)
-						     (get-display-dimensions))))
-		 ;; derive offset from top left as 10% of display
-		 (rename-keys
-		  '((width . left)
-		    (height . top))
-		  (scale-keys #'/ 10 (or (get-mouse-pointer-display-dimensions)
-					 (get-display-dimensions)))))))
+;; TODO: use known display size defaults when not in `window-system'
+(when window-system
+  (setq default-frame-alist
+        (append default-frame-alist
+  	      (append
+  		 ;; derive width and height from display size with the below factors
+  		 (let ((scale-factors
+  			`((width . ,(* 3 (frame-char-width)))
+  			  (height . ,(* 3 (frame-char-height))))))
+  		   (scale-keys #'/ scale-factors (or (get-mouse-pointer-display-dimensions)
+  						     (get-display-dimensions))))
+  		 ;; derive offset from top left as 10% of display
+  		 (rename-keys
+  		  '((width . left)
+  		    (height . top))
+  		  (scale-keys #'/ 10 (or (get-mouse-pointer-display-dimensions)
+  					 (get-display-dimensions))))))))
 
 (use-package ns-auto-titlebar
   :if (memq window-system '(mac ns))
