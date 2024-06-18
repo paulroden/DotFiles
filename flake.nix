@@ -35,6 +35,10 @@
       url = "github:paulroden/soft-serve";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    eudaemon = {
+      url = "github:paulroden/eud";
+    };
 
   };
 
@@ -44,6 +48,7 @@
     , home-manager
     , emacs-lsp-booster
     , fenix
+    , eudaemon
     , soft-serve
     , ...
     }:
@@ -55,6 +60,7 @@
         emacs-lsp-booster.overlays.default
         fenix.overlays.default
         soft-serve.overlays.default
+        (_: _: { eud = eudaemon.packages.${system}.default; })
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
       ];
       config.allowUnfree = true;
@@ -68,9 +74,11 @@
         modules = [ ./Nix/Devices/Asara ];
       };
     };
-    homeConfigurations.paul = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./Nix/Home/home.nix ];
+    homeConfigurations = {
+      "paul" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./Nix/Home/home.nix ];
+      };
     };
   };
 }

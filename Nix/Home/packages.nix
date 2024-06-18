@@ -42,6 +42,7 @@ let
   emacs-lsp-booster
   emacs-vterm
   emacsPackages.pdf-tools
+  eud
   exiftool
   eza
   fd
