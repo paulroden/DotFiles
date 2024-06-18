@@ -95,8 +95,8 @@ in
 
     # kitticon: https://github.com/hristost/kitty-alternative-icon
     file.".config/kitty/kitty.app.icns".source = ./programs/kitty/kitty.app.icns;
-    file.".config/kitty/search.py".source = ./programs/kitty/kitty_search/search.py;
-    file.".config/kitty/scroll_mark.py".source = ./programs/kitty/kitty_search/scroll_mark.py;
+    file.".config/kitty/search.py".source = ./programs/kitty/search.py;
+    file.".config/kitty/scroll_mark.py".source = ./programs/kitty/scroll_mark.py;
 
     # skhd config
     file.".config/skhd/skhdrc".source = ./programs/skhd/skhdrc;
