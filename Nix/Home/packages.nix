@@ -11,14 +11,18 @@ let
     p.cubical
   ]))
   automake
+  bandwhich
+  bottom
   broot
   cabal-install
   cabal2nix
   cachix
+  cargo-watch
   chez-racket
-  clang
+  clang_18
   cmake
   colima
+  complgen
   darwin.apple_sdk.frameworks.CoreFoundation
   darwin.apple_sdk.frameworks.Security
   deno
@@ -47,6 +51,7 @@ let
   fzf
   gh
   git
+  git-ignore
   gnuplot
   go
   graphviz
@@ -64,6 +69,7 @@ let
   htop
   httpie
   hunspell
+  hyperfine
   iina
   imgcat
   ispell
@@ -106,9 +112,11 @@ let
     p.pyarrow
     p.pydantic
   ]))
+  pqrs
   procs
   qemu
   racket
+  rage
   ripgrep
   ruff
   sd
@@ -117,11 +125,14 @@ let
   sioyek
   skhd
   socat
+  sniffnet
+#  srgn
   starship
   termpdfpy
   texlive.combined.scheme-small
-  tldr
+  tlrc
   tmux
+  tokei
   tree-sitter
   typst
   typst-lsp
@@ -145,4 +156,7 @@ let
     "rustfmt"
   ])
   rust-analyzer-nightly
+  # for here:  , , , , , 
+  # for cargo:  gign, eud
+  
 ]
