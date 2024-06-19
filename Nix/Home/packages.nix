@@ -56,7 +56,10 @@ let
   gnuplot
   go
   graphviz
-  haskell.compiler.ghc910
+  haskell.compiler.ghc98
+  (haskell-language-server.override {
+    supportedGhcVersions = [ "92" "94" "96" "98" ];
+  })
   haskg.hoogle
   haskg.shake
   (hasxe haskg.fourmolu)
@@ -157,7 +160,4 @@ let
     "rustfmt"
   ])
   rust-analyzer-nightly
-  # for here:  , , , , , 
-  # for cargo:  gign, eud
-  
 ]
