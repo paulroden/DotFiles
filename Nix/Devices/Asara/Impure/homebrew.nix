@@ -20,6 +20,7 @@
       "chatgpt"
       "discord"
       "focusrite-control-2"
+      "google-chrome@canary"
       "jquake"
       "logseq"
       "meetingbar"
