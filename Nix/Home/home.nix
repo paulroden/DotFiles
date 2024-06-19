@@ -17,7 +17,7 @@ let
     "-framework CoreFoundation"
     "$LDFLAGS"
   ];
-  libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib ${homebrewRoot}/lib";
+  libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib:${homebrewRoot}/lib:/usr/lib";
   cargoPath =  "${config.xdg.dataHome}/cargo";
 in
 {
