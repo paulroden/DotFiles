@@ -28,6 +28,7 @@
       "netnewswire"
       "nova"
       "orbstack"
+      "qgis"
       "racket"  # cask version includes Dr. Racket for Mac
       "raycast"
       "soulver"
