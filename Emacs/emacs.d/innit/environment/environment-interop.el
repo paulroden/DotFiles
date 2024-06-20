@@ -54,8 +54,75 @@
 (eval-and-compile
   (defconst vterm-load-path (getenv "EMACS_VTERM_PATH")))
 
-;;; It's a secret, ssshutup..!
+;; Dirvish, which spins on top of dired
+(use-package dirvish
+  :straight t
+  :demand t
+  :bind
+  (("C-c f" . dirvish-fd)
+   ("M-s-l" . dirvish-side)
+   ;; ("" . dirvish-dwim)  ;; TODO: set this also?
+   :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
+   ("a"   . dirvish-quick-access)
+   ("f"   . dirvish-file-info-menu)
+   ("y"   . dirvish-yank-menu)
+   ("N"   . dirvish-narrow)
+   ("^"   . dirvish-history-last)
+   ("h"   . dirvish-history-jump) ; remapped `describe-mode'
+   ("s"   . dirvish-quicksort)    ; remapped `dired-sort-toggle-or-edit'
+   ("v"   . dirvish-vc-menu)      ; remapped `dired-view-file'
+   ("TAB" . dirvish-subtree-toggle)
+   ("M-f" . dirvish-history-go-forward)
+   ("M-b" . dirvish-history-go-backward)
+   ("M-l" . dirvish-ls-switches-menu)
+   ("M-m" . dirvish-mark-menu)
+   ("M-t" . dirvish-layout-toggle)
+   ("M-s" . dirvish-setup-menu)
+   ("M-e" . dirvish-emerge-menu)
+   ("M-j" . dirvish-fd-jump)
+   ;; mouse bindings
+   ("<mouse-1>" . dirvish-subtree-toggle-or-open)
+   ("<mouse-2>" . dired-mouse-find-file-other-window)
+   ("<mouse-3>" . dired-mouse-find-file))
+  :custom
+  ;; Don't worry, Dirvish is still performant even if you enable all these attributes
+  (dirvish-attributes
+   '(file-time
+     file-size
+     vc-state
+     subtree-state
+     collapse))
+  ;; hide parent directory
+  (dirvish-default-layout '(0 0.4 0.6))
+  ;; home,
+  (dirvish-path-separators '("  ~" "  ⊥" " / "))
+  ;; move to trash, rather than destroy
+  (delete-by-moving-to-trash t)
+  ;; drag & drop now possible
+  (dired-mouse-drag-files t)
+  (mouse-drag-and-drop-region-cross-program t)
+  ;; easy access to common places
+  (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
+   '(("h" "~/"              "Home")
+     ("d" "~/Downloads/"    "Downloads")
+     ("p" "~/Projects/"     "Projects")
+     ("t" "~/.Trash/"       "Filth")))
+  :config
+  ;; Use `eza' instead of `ls' for listing directory previews
+  (dirvish-define-preview eza (file)
+     "Use eza for directory previews."
+     :require ("eza")
+     (when (file-directory-p file)
+       `(shell . ("eza" "-lag" "--colour=never" ,file))))
+  (add-to-list 'dirvish-preview-dispatchers 'eza)
+  ;; setup dirvish instead of dired and enable sidebar + peek
+  (dirvish-override-dired-mode)
+  (dirvish-side-follow-mode)
+  (dirvish-peek-mode))
 
+
+;;; It's a secret, ssshutup..!
+;;
 ;;; Share `ssh-agent' information with Emacs
 ;;  (also `gpg-agent', but we're not there yet)
 (use-package keychain-environment
