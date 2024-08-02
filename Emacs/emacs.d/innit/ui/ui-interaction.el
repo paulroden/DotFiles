@@ -58,10 +58,10 @@
 	  (apply
 	   #'color-rgb-to-hex (append (color-hsl-to-rgb 0.63 0.75 l) '(2))))
 	   (number-sequence 0.42 0.12 -0.05)))
-  :hook (conf-mode
+  :hook ((conf-mode
   	 org-mode	
          prog-mode
-         text-mode))
+         text-mode) . highlight-parentheses-mode))
 
 ;;; Menus and Navigation
 ;; Avy navygation
