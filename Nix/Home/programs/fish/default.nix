@@ -3,6 +3,7 @@
   enable = true;
   interactiveShellInit = ''
     set fish_greeting
+    
     nix-your-shell fish | source
   '';
   plugins = map
@@ -14,10 +15,11 @@
       "done"
       "foreign-env"
       "puffer"
-      "sponge"
+      # "sponge"
     ];
   functions = builtins.foldl'
-    (acc: x: acc // { "${x}".body = builtins.readFile ./functions/${x}.fish; }) {}
+    (acc: x: acc // { "${x}".body = builtins.readFile ./functions/${x}.fish; })
+    {}
     [
       "ec"
       "emacsdaemons"
