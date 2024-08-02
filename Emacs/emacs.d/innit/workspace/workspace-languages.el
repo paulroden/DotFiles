@@ -328,6 +328,10 @@
   :straight t)
 
 
+;; ... and the Argonauts
+(use-package json-ts-mode
+  :mode ("\\.\\(?:json\\|jsonc\\|jsonp\\|geojson)\\" . json-ts-mode))
+
 ;;; Shells 🐚
 ;; Fish
 (use-package fish-mode
