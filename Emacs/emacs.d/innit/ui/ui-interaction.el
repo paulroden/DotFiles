@@ -56,8 +56,12 @@
   (highlight-parentheses-colors
    (mapcar (lambda (l)
 	  (apply
-	   #'color-rgb-to-hex (append (color-hsl-to-rgb 0.35 0.60 l) '(2))))
-	   (number-sequence 0.42 0.12 -0.05))))
+	   #'color-rgb-to-hex (append (color-hsl-to-rgb 0.63 0.75 l) '(2))))
+	   (number-sequence 0.42 0.12 -0.05)))
+  :hook (conf-mode
+  	 org-mode	
+         prog-mode
+         text-mode))
 
 ;;; Menus and Navigation
 ;; Avy navygation
