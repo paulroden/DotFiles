@@ -11,6 +11,7 @@ let
     p.cubical
   ]))
   automake
+  awscli2
   bandwhich
   bottom
   broot
@@ -38,6 +39,9 @@ let
   elmpkg.elm
   elmpkg.elm-format
   elmpkg.elm-language-server
+  elmpkg.elm-test
+  elmpkg.elm-review
+  elmpkg.elm-test-rs
   emacs'
   emacs-lsp-booster
   emacs-vterm
@@ -50,6 +54,7 @@ let
   figlet
   fish
   fzf
+  ghciwatch
   gh
   git
   git-ignore

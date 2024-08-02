@@ -8,7 +8,7 @@
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/9d13dbb1ef2d0a6a6788d5b6fe4cbd727dd893c5";  
+      url = "github:NixOS/nixpkgs/d3651f9b43afac9d88e8e844324297439b7ac3e0";  
     };
 
     darwin = {
