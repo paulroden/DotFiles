@@ -8,6 +8,7 @@ let
     "-L${pkgs.libiconv}/include"
     "-L${homebrewRoot}/include"
     "-F${frameworks.CoreFoundation}/Library/Frameworks"
+    "-F${frameworks.Security}/Library/Frameworks"
     "$CFLAGS"
   ];
   linkerFlags = lib.concatStringsSep " " [
@@ -15,6 +16,8 @@ let
     "-L${homebrewRoot}/lib"
     "-F${frameworks.CoreFoundation}/Library/Frameworks"
     "-framework CoreFoundation"
+     "-F${frameworks.Security}/Library/Frameworks"
+    "-framework Security"
     "$LDFLAGS"
   ];
   libraryPath = "$LIBRARY_PATH:${pkgs.libiconv}/lib:${homebrewRoot}/lib:/usr/lib";
@@ -45,7 +48,7 @@ in
       CPPFLAGS = cFlags;
       LDFLAGS = linkerFlags;
       NIX_LDFLAGS = lib.replaceStrings ["LDFLAGS"] ["NIX_LDFLAGS"] linkerFlags;
-      RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation";
+      RUSTFLAGS = "-L framework=${frameworks.CoreFoundation}/Library/Frameworks -l framework=CoreFoundation -L framework=${frameworks.Security}/Library/Frameworks -l framework=Security";
       CARGO_HOME = "${cargoPath}";
       # hack to clear the PATH inherited from the system environment
       PATH = "";
@@ -79,6 +82,7 @@ in
       ql = "qlmanage -p";  # quicklook -- MacOS only
       sk = "kitten ssh";
       emacs = "${pkgs.emacs'}/Applications/Emacs.app/Contents/MacOS/Emacs";
+      neofetch = "${pkgs.fastfetch}/bin/fastfetch";
     };
 
     # GHCI config

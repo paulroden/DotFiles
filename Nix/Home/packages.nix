@@ -19,13 +19,14 @@ let
   cabal2nix
   cachix
   cargo-watch
-  chez-racket
+  cctools
+  chez
   clang_18
   cmake
   colima
   complgen
-  darwin.apple_sdk.frameworks.CoreFoundation
-  darwin.apple_sdk.frameworks.Security
+  darwin.CF  # CoreFoundation
+  darwin.Security
   deno
   dhall
   dhall-bash
@@ -49,6 +50,7 @@ let
   eud
   exiftool
   eza
+  fastfetch
   fd
   ffmpeg
   figlet
@@ -90,12 +92,10 @@ let
   libgit2
   libiconv
   libpng
-  llvmPackages.bintools-unwrapped # ref. https://matklad.github.io/2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html; `-unwrapped` avoids collision gwith clang
   lua53Packages.digestif
   mas
   magic-wormhole-rs
   ncurses
-  neofetch
   nil
   nix-prefetch-git
   nix-tree
@@ -137,9 +137,9 @@ let
   sniffnet
 #  srgn
   starship
+  tealdeer
   termpdfpy
   texlive.combined.scheme-small
-  tlrc
   tmux
   tokei
   tree-sitter
