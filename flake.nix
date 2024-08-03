@@ -8,26 +8,26 @@
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/d3651f9b43afac9d88e8e844324297439b7ac3e0";  
+      url = "github:NixOS/nixpkgs/5e72b96273f459664f4c909e7beedaadc0027fef";  
     };
 
     darwin = {
-      url = "github:lnl7/nix-darwin/bcc8afd06e237df060c85bad6af7128e05fd61a3";  # master @ 2024-03-17
+      url = "github:lnl7/nix-darwin/f7142b8024d6b70c66fd646e1d099d3aa5bfec49";  # master @ 2024-08-03
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/a7117efb3725e6197dd95424136f79147aa35e5b";  # master @ 2024-06-04
+      url = "github:nix-community/home-manager/afc892db74d65042031a093adb6010c4c3378422";  # master @ 2024-08-02
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fenix = {
-      url = "github:nix-community/fenix/49bf3506637ee9f30ab589104f479ec61db5924c";  # master @ 2024-05-20
+      url = "github:nix-community/fenix/69c2c0c3c2f56314966dae21d79274515b228482";  # main @ 2024-08-03
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-lsp-booster = {
-      url = "github:slotThe/emacs-lsp-booster-flake/1a53bd820143236c49118c8f1fa588c86ef2d43c";
+      url = "github:slotThe/emacs-lsp-booster-flake/7d110295988fc9bf7fd43bb0cabfbe58a4a5ecf8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -79,8 +79,7 @@
   };
   
   fonts = {
-    fontDir.enable = true;
-    fonts = [
+    packages = [
       pkgs.cardo
       pkgs.charis-sil
       pkgs.crimson-pro
