@@ -59,7 +59,7 @@
 	   #'color-rgb-to-hex (append (color-hsl-to-rgb 0.63 0.75 l) '(2))))
 	   (number-sequence 0.42 0.12 -0.05)))
   :hook ((conf-mode
-  	 org-mode	
+  	 org-mode
          prog-mode
          text-mode) . highlight-parentheses-mode))
 
@@ -108,11 +108,11 @@
   ;; Vertico commands are hidden in normal buffers.
   (setq read-extended-command-predicate
         #'command-completion-default-include-p)
-  
+
   ;; Text interaction
   ;; Delete active/selected text when inserting (yanking) for fewer surprises.
   (delete-selection-mode t)
-  
+
   ;; Enable minibuffers-in-minibuffers-in-minibuffers, and show how deep they go:
   (setq enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode)
@@ -125,4 +125,3 @@
 
 (provide 'ui-interaction)
 ;;; ui-interaction.el ends here.
-
