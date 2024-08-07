@@ -76,11 +76,11 @@ let
   (hasxe haskg.hscolour)
   (hasxe haskg.pointfree)
   helix
-  # hexcurse
   htop
   httpie
   hunspell
   hyperfine
+  hyx
   iina
   imgcat
   ispell
@@ -135,8 +135,9 @@ let
   skhd
   socat
   sniffnet
-#  srgn
+  srgn
   starship
+  tailscale
   tealdeer
   termpdfpy
   texlive.combined.scheme-small

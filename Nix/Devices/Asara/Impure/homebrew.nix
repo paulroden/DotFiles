@@ -73,7 +73,8 @@
       "Pastel" = 413897608;
       "PDF Viewer" = 1120099014;
       "iA Writer" = 775737590;
-      "reMarkable" = 1276493162;      
+      "reMarkable" = 1276493162;
+      "Tailscale" = 1475387142;
     };
   };
 }
