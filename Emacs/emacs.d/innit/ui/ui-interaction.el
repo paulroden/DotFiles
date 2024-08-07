@@ -46,7 +46,7 @@
          ((conf-mode
            prog-mode
            text-mode)
-          . electric-pair-mode)))
+	  . electric-pair-mode)))
 
 ;; Parens
 (use-package highlight-parentheses
@@ -61,7 +61,8 @@
   :hook ((conf-mode
   	 org-mode
          prog-mode
-         text-mode) . highlight-parentheses-mode))
+         text-mode)
+	 . highlight-parentheses-mode))
 
 ;;; Menus and Navigation
 ;; Avy navygation
