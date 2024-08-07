@@ -8,7 +8,7 @@
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/5e72b96273f459664f4c909e7beedaadc0027fef";  
+      url = "github:NixOS/nixpkgs/c20c714d7cdf582c9c9db6bdac37c407d33d1789";
     };
 
     darwin = {
@@ -35,7 +35,7 @@
       url = "github:paulroden/soft-serve";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     eudaemon = {
       url = "github:paulroden/eud";
     };
