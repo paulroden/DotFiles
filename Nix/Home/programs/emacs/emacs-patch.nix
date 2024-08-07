@@ -5,7 +5,7 @@ final: prev: pkgs: {
     postUnpack = (prev.postUnpack or "") + ''
       cp ${./icons/nobu417-big-sur.icns} $sourceRoot/nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns
     '';
-    patches = 
+    patches =
       let patchesBaseURL =
             "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches";
       in (prev.patches or []) ++ [
@@ -16,7 +16,7 @@ final: prev: pkgs: {
         })
         # Use poll instead of select to get file descriptors
         (pkgs.fetchpatch {
-          url = "${patchesBaseURL}/emacs-29/poll.patch";
+          url = "${patchesBaseURL}/emacs-30/poll.patch";
           sha256 = "sha256-jN9MlD8/ZrnLuP2/HUXXEVVd6A+aRZNYFdZF8ReJGfY=";
         })
         # leave frame selecting to Emacs
@@ -28,6 +28,11 @@ final: prev: pkgs: {
         (pkgs.fetchpatch {
           url = "${patchesBaseURL}/emacs-28/system-appearance.patch";
           sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
+        })
+        # undecorated frames with round corners
+        (pkgs.fetchpatch {
+          url = "${patchesBaseURL}/emacs-30/round-undecorated-frame.patch";
+          sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
         })
       ];
   });
