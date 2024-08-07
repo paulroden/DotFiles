@@ -24,6 +24,7 @@ let
   clang_18
   cmake
   colima
+  coreutils-prefixed
   complgen
   darwin.CF  # CoreFoundation
   darwin.Security
