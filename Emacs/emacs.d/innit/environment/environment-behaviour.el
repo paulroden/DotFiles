@@ -92,7 +92,7 @@
   (defun suppress-msg (function)
     "Prevent FUNCTION from showing `Wrote <FILE>' messages.
       (The messages are still logged to `*Messages*'.)"
-    (let ((inhibit-message  t))
+    (let ((inhibit-message t))
       (funcall function)))
   
   (advice-add 'recentf-save-list :around 'suppress-msg)
@@ -101,8 +101,9 @@
 ;; Allow us to log all the commmands
 ;; Show command log buffer with `clm/open-command-log-buffer'
 ;; See also, `c-h l' to view lossage
-(use-package command-log-mode)
-
+(use-package command-log-mode
+  :straight t
+  :demand t)
 
 
 ;; File time stamps
