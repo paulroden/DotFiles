@@ -79,42 +79,43 @@
   };
   
   fonts = {
-    packages = [
-      pkgs.cardo
-      pkgs.charis-sil
-      pkgs.crimson-pro
-      pkgs.fira
-      pkgs.font-awesome
-      pkgs.gyre-fonts
-      pkgs.ibm-plex
-      pkgs.inriafonts
-      pkgs.iosevka-comfy.comfy
-      pkgs.iosevka-comfy.comfy-fixed
-      pkgs.iosevka-comfy.comfy-duo
-      pkgs.jetbrains-mono
-      pkgs.julia-mono
-      pkgs.kanji-stroke-order-font
-      pkgs.liberation_ttf
-      pkgs.maple-mono
-      pkgs.merriweather
-      pkgs.merriweather-sans
-      pkgs.mononoki
-      pkgs.mplus-outline-fonts.githubRelease
-      pkgs.nacelle
-      # pkgs.noto-fonts
-      # pkgs.noto-fonts-cjk
-      # pkgs.noto-fonts-emoji
-      pkgs.open-sans
-      pkgs.sarasa-gothic
-      pkgs.source-code-pro
-      pkgs.source-han-mono
-      pkgs.source-han-sans
-      pkgs.source-han-serif
-      pkgs.source-sans
-      pkgs.sorts-mill-goudy
-      pkgs.stix-two
-      pkgs.weather-icons
-      (pkgs.nerdfonts.override {
+    packages = with pkgs; [
+      cardo
+      charis-sil
+      crimson-pro
+      fira
+      font-awesome
+      gyre-fonts
+      hasklig
+      ibm-plex
+      inriafonts
+      iosevka-comfy.comfy
+      iosevka-comfy.comfy-fixed
+      iosevka-comfy.comfy-duo
+      jetbrains-mono
+      julia-mono
+      kanji-stroke-order-font
+      liberation_ttf
+      maple-mono
+      merriweather
+      merriweather-sans
+      mononoki
+      mplus-outline-fonts.githubRelease
+      nacelle
+      # noto-fonts
+      # noto-fonts-cjk
+      # noto-fonts-emoji
+      open-sans
+      sarasa-gothic
+      source-code-pro
+      source-han-mono
+      source-han-sans
+      source-han-serif
+      source-sans
+      sorts-mill-goudy
+      stix-two
+      weather-icons
+      (nerdfonts.override {
         fonts = [
           "FiraCode"
           "Hasklig"
