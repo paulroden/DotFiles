@@ -63,11 +63,12 @@
   ;; eglot-send-changes-idle-time 0.1
   :hook ((c++-mode     . eglot-ensure)
          (c-mode       . eglot-ensure)
+	 (elm-mode     . eglot-ensure)
          (go-mode      . eglot-ensure)
          (haskell-mode . eglot-ensure)
          (python-mode  . eglot-ensure)
-         (rust-mode    . eglot-ensure)
-         (nix-mode     . eglot-ensure)))
+         (nix-mode     . eglot-ensure)
+         (rust-mode    . eglot-ensure)))
 
 (use-package eglot-booster
   :straight (:type git :host github :repo "jdtsmith/eglot-booster")
@@ -204,6 +205,8 @@
   :defer
   :after (haskell-mode yasnippet))
 
+(use-package elm-mode
+  :straight t)
 
 ;;; Lisp(s)
 (use-package geiser-chez
