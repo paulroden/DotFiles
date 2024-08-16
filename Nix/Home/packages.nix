@@ -82,7 +82,6 @@ let
   hunspell
   hyperfine
   hyx
-  iina
   imgcat
   ispell
   jq
