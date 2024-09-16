@@ -14,7 +14,7 @@ To be run from the root of this directory, unless otherwise stated.
 ``` shell
 home-manager switch --flake .#paul
 ```
-(optionally add `--show-trace` for crazy error messages, or --dry-run to have a preview of results)
+(optionally add `--show-trace` for crazy error messages, or `--dry-run` to have a preview of results)
 
 
 ##### Rebuild Machine Configuration

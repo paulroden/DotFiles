@@ -124,13 +124,17 @@
     ];
   };
 
-  # MacOS defaults - full list here: https://daiderd.com/nix-darwin/manual/index.html
+  # MacOS defaults
+  #  - full list here: https://daiderd.com/nix-darwin/manual/index.html
+  #  - see also: https://macos-defaults.com
   system = {
     defaults = {
       dock = {
         autohide = true;
         orientation = "left";
         autohide-time-modifier = 0.3;
+        expose-group-by-app = false;  # TODO: looks like this should be expose-group-by-app instead - PR?
+        "expose-group-apps" = false;
       };
     };
   };

@@ -20,7 +20,7 @@
       url = "github:nix-community/home-manager/afc892db74d65042031a093adb6010c4c3378422";  # master @ 2024-08-02
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
     fenix = {
       url = "github:nix-community/fenix/69c2c0c3c2f56314966dae21d79274515b228482";  # main @ 2024-08-03
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +56,7 @@
     system = "aarch64-darwin";
     pkgs = import nixpkgs {
       localSystem = system;
+      config.allowUnfree = true;
       overlays = [
         emacs-lsp-booster.overlays.default
         fenix.overlays.default
@@ -63,7 +64,6 @@
         (_: _: { eud = eudaemon.packages.${system}.default; })
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
       ];
-      config.allowUnfree = true;
     };
   in {
     packages.${system}.default = fenix.packages.${system}.minimal.toolchain;
