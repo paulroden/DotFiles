@@ -93,6 +93,7 @@ let
   libiconv
   libpng
   lua53Packages.digestif
+  macchina
   mas
   magic-wormhole-rs
   ncurses
@@ -104,11 +105,12 @@ let
   nodejs
   nodePackages.bash-language-server
   nushell
-  obsidian
   onefetch
   ouch
   pandoc
   poetry
+  pqrs
+  procs
   (python312.withPackages(p: [
     p.pip
     p.httpx
@@ -121,8 +123,7 @@ let
     p.pyarrow
     p.pydantic
   ]))
-  pqrs
-  procs
+  pylyzer
   qemu
   racket
   rage

@@ -28,6 +28,7 @@
       "moom"
       "netnewswire"
       "nova"
+      "obsidian"
       "orbstack"
       "qgis"
       "racket"  # cask version includes Dr. Racket for Mac

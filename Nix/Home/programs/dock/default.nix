@@ -9,6 +9,7 @@
     "/System/Applications/Music.app/"
     "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/"  # this one is super-special!
     "/Applications/NetNewsWire.app/"
+    "/Applications/Obsidian.app/"
     "${pkgs.emacs'}/Applications/Emacs.app/"
     "/Applications/Zed.app/"
     "/Applications/iA Writer.app/"
