@@ -3,18 +3,15 @@
 ;;; 
 ;;; Code:
 
-
 (defconst font--fixed-width-family
   "JuliaMono"
-  "The font family used for fixed-with circumstances.
-Unless otherwise stated.")
-
-(defun setup-font-for-sf-symbols ()
-  "Utility function to enable display of Apple's SF Symbols.
-e.g. 􀪱, believed to be in Unicode range [u00100000,u00101741]"
-  (set-fontset-font t '(#x100000 . #x101800) "SF Compact"))
+  "The font family used for fixed-with circumstances. Unless otherwise stated.")
 
 (use-package emacs
+  :init
+  ;;  enable display of Apple's SF Symbols. e.g. 􀪱, believed to be in Unicode range [u00100000,u00101741]
+  (set-fontset-font t '(#x100000 . #x101800) "SF Compact")
+  ;; (setup-font-for-sf-symbols)
   :config
   (setq-default line-spacing 4) ;; pleasant when using Julia Mono, among others
   (set-fontset-font t 'symbol
@@ -44,12 +41,9 @@ e.g. 􀪱, believed to be in Unicode range [u00100000,u00101741]"
                       :font "SF Mono"
                       :weight 'medium
                       :foreground "#48463d")
-
   (set-face-attribute 'minibuffer-prompt nil
                       :font "SF Mono"
-                      :weight 'light)
-
-  (setup-font-for-sf-symbols))
+                      :weight 'light))
 
 
 ;;; Ligatures
@@ -83,7 +77,7 @@ e.g. 􀪱, believed to be in Unicode range [u00100000,u00101741]"
      "&&"    "!!."   "!!!"
      ))
   (global-ligature-mode t)
-  :hook (haskell-mode . ligature-mode))
+  :hook (prog-mode . ligature-mode))
 
 ;; Useful tool for debugging font lock issues
 ;; https://github.com/Lindydancer/font-lock-studio
