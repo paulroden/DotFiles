@@ -61,7 +61,7 @@
   :bind
   (("C-c f" . dirvish-fd)
    ("M-s-l" . dirvish-side)
-   ;; ("" . dirvish-dwim)  ;; TODO: set this also?
+   ("C-x d" . dirvish-dwim)  ;; note: overrides default dired binding
    :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
    ("a"   . dirvish-quick-access)
    ("f"   . dirvish-file-info-menu)
@@ -92,6 +92,9 @@
      vc-state
      subtree-state
      collapse))
+  ;; appearance
+  (dirvish-use-header-line t)
+  
   ;; hide parent directory
   (dirvish-default-layout '(0 0.4 0.6))
   ;; home,
@@ -102,7 +105,7 @@
   (dired-mouse-drag-files t)
   (mouse-drag-and-drop-region-cross-program t)
   ;; easy access to common places
-  (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
+  (dirvish-quick-access-entries
    '(("h" "~/"              "Home")
      ("d" "~/Downloads/"    "Downloads")
      ("p" "~/Projects/"     "Projects")
@@ -196,6 +199,12 @@
     :models '("mixtral-8x7b-32768"
               "gemma-7b-it"
               "llama2-70b-4096")))
+
+;; If we're running on OS X, let's let us use some stuff there
+(when (equal system-type 'darwin)
+  (use-package osx-lib
+    :straight t))
+
 
 (provide 'environment-interop)
 ;;; environment-interop.el ends here.
