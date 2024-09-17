@@ -8,11 +8,11 @@
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/c20c714d7cdf582c9c9db6bdac37c407d33d1789";
+      url = "github:NixOS/nixpkgs/1930c1acd4cf46f3c4ca9f882b266f86c73cdbef";  # master @ 2024-09-08 EOD
     };
 
     darwin = {
-      url = "github:lnl7/nix-darwin/f7142b8024d6b70c66fd646e1d099d3aa5bfec49";  # master @ 2024-08-03
+      url = "github:lnl7/nix-darwin/122ff62d68c9068706393001d5884b66bc0067c4";  # master @ 2024-09-12 EOD
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

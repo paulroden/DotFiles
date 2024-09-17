@@ -25,6 +25,12 @@
   nix = {
     settings = {
       trusted-users = [ "paul" "root" ];
+      trusted-public-keys = [
+        "paulroden.cachix.org-1:9LdgVAAEt/GY89U5fjl9BwDli074J+0P1TznnAGWbQbLc1zD1QJLevHm6gfFwk/IIOAoxJGWp1NtKFzm27EWWQ=="
+      ];
+      substituters = [
+        "https://paulroden.cachix.org"
+      ];
     };
     package = pkgs.nixFlakes;
     extraOptions =
@@ -134,7 +140,7 @@
         orientation = "left";
         autohide-time-modifier = 0.3;
         expose-group-by-app = false;  # TODO: looks like this should be expose-group-by-app instead - PR?
-        "expose-group-apps" = false;
+        # "expose-group-apps" = false;
       };
     };
   };
