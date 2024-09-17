@@ -14,11 +14,11 @@ final: prev: pkgs: {
           url = "${patchesBaseURL}/emacs-28/fix-window-role.patch";
           sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
         })
-        # Use poll instead of select to get file descriptors
-        (pkgs.fetchpatch {
-          url = "${patchesBaseURL}/emacs-30/poll.patch";
-          sha256 = "sha256-jN9MlD8/ZrnLuP2/HUXXEVVd6A+aRZNYFdZF8ReJGfY=";
-        })
+        # # Use poll instead of select to get file descriptors
+        # (pkgs.fetchpatch {
+        #   url = "${patchesBaseURL}/emacs-29/poll.patch";
+        #   sha256 = "sha256-bQW9LPmJhMAtP2rftndTdjw0uipPyOp5oXqtIcs7i/Q=";
+        # })
         # leave frame selecting to Emacs
         (pkgs.fetchpatch {
           url = "${patchesBaseURL}/emacs-28/no-frame-refocus-cocoa.patch";
@@ -26,7 +26,7 @@ final: prev: pkgs: {
         })
         # Make Emacs aware of OS-level light/dark mode
         (pkgs.fetchpatch {
-          url = "${patchesBaseURL}/emacs-28/system-appearance.patch";
+          url = "${patchesBaseURL}/emacs-30/system-appearance.patch";
           sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
         })
         # undecorated frames with round corners

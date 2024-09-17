@@ -140,7 +140,7 @@ let
   starship
   tailscale
   tealdeer
-  termpdfpy
+  #  termpdfpy  # DISABLED due to mupdf build error in current nixpkgs (low priority)
   texlive.combined.scheme-small
   tmux
   tokei
