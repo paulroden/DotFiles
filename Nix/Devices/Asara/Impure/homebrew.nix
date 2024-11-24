@@ -62,6 +62,7 @@
     ];
     # Mac App Store Apps (via https://github.com/mas-cli/mas)
     masApps = {
+      "Bumpr" = 1166066070;
       "Chambers Dictionary" = 500583211;
       "Chambers Thesaurus" = 498829958;
       "Dictionaries" = 1380563956;
