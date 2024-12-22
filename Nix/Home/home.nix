@@ -41,7 +41,7 @@ in
       HOMEBREW_PREFIX = homebrewRoot;
       HOMEBREW_CELLAR = "${homebrewRoot}/Cellar";
       EMACS_EXEC = "${pkgs.emacs'}/Applications/Emacs.app/Contents/MacOS/Emacs";
-      EMACS_VTERM_PATH = "${pkgs.emacs-vterm}";
+      EMACS_VTERM_PATH = "${pkgs.emacsPackages.vterm}";
       EMACS_PDF_TOOLS = "${pkgs.emacsPackages.pdf-tools}";
       LIBRARY_PATH = libraryPath;
       CFLAGS = cFlags;
@@ -110,7 +110,7 @@ in
       source = ./programs/scripts/new-safari-window;
       executable = true;
     };
-    
+
   };
   programs = {
     home-manager.enable = true;
@@ -132,9 +132,9 @@ in
     bat = import ./programs/bat;
     vscode = import ./programs/vscode { inherit pkgs; };
   };
-  
+
   local.dock = import ./programs/dock { inherit config pkgs; };
-  
+
   targets.darwin.defaults = {
     "com.apple.dock" = {
       tilesize = lib.mkDefault 40;

@@ -25,17 +25,14 @@
   nix = {
     settings = {
       trusted-users = [ "paul" "root" ];
-      trusted-public-keys = [
-        "paulroden.cachix.org-1:9LdgVAAEt/GY89U5fjl9BwDli074J+0P1TznnAGWbQbLc1zD1QJLevHm6gfFwk/IIOAoxJGWp1NtKFzm27EWWQ=="
+      trusted-public-keys = [ 
+        "paulroden.cachix.org-1:y3Ncw9UCS3rx5uoHxcJPyCDgKMSRlqdTbShc5tuxFlk=="
       ];
       substituters = [
         "https://paulroden.cachix.org"
       ];
     };
-    package = pkgs.nixFlakes;
-    extraOptions =
-      lib.optionalString (config.nix.package == pkgs.nixFlakes)
-        "experimental-features = nix-command flakes";
+    extraOptions = "experimental-features = nix-command flakes";
     configureBuildUsers = true;
     nrBuildUsers = 32;
     distributedBuilds = true;
@@ -139,7 +136,7 @@
         autohide = true;
         orientation = "left";
         autohide-time-modifier = 0.3;
-        expose-group-by-app = false;  # TODO: looks like this should be expose-group-by-app instead - PR?
+        expose-group-apps = false;  # TODO: looks like this should be expose-group-by-app instead - PR?
         # "expose-group-apps" = false;
       };
     };

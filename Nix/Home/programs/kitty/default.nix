@@ -5,7 +5,7 @@
     name = "JuliaMono";
     size = 14;
   };
-  theme = "Alabaster Dark";
+  themeFile = "Alabaster_Dark";
   settings = {
     shell = "${config.home.profileDirectory}/bin/fish";
     scrollback_lines = 10000;

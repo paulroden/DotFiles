@@ -46,8 +46,8 @@ let
   elmpkg.elm-test-rs
   emacs'
   emacs-lsp-booster
-  emacs-vterm
   emacsPackages.pdf-tools
+  emacsPackages.vterm
   eud
   exiftool
   eza
@@ -132,7 +132,6 @@ let
   sd
   shfmt
   silver-searcher
-  sioyek
   skhd
   socat
   sniffnet
@@ -166,5 +165,5 @@ let
     "rustc"
     "rustfmt"
   ])
-  rust-analyzer-nightly
+  rust-analyzer
 ]

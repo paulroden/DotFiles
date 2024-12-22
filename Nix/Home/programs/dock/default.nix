@@ -3,7 +3,7 @@
   enable = true;
   apps = [
     "${pkgs.kitty}/Applications/kitty.app/"
-    "/System/Applications/Calendar.app/"
+    "/Applications/Fantastical.app/"
     "/System/Applications/Mail.app/"
     "${config.home.homeDirectory}/Applications/HEY.app"
     "/System/Applications/Music.app/"

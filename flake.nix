@@ -4,35 +4,30 @@
   inputs = {
 
     flake-utils = {
-      url = "github:numtide/flake-utils/b1d9ab70662946ef0850d488da1c9019f3a9752a";
+      url = "github:numtide/flake-utils/11707dc2f618dd54ca8739b309ec4fc024de578b";  # master @ 2024-11-13
     };
 
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/1930c1acd4cf46f3c4ca9f882b266f86c73cdbef";  # master @ 2024-09-08 EOD
+      url = "github:NixOS/nixpkgs/3ab7056874d66b3e20693c871c7340dd5d81cea3";
     };
 
     darwin = {
-      url = "github:lnl7/nix-darwin/122ff62d68c9068706393001d5884b66bc0067c4";  # master @ 2024-09-12 EOD
+      url = "github:lnl7/nix-darwin/a35b08d09efda83625bef267eb24347b446c80b8";  # master @ 2024-12-07
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/afc892db74d65042031a093adb6010c4c3378422";  # master @ 2024-08-02
+      url = "github:nix-community/home-manager/c903b1f6fbfc2039963806df896f698331b77aa8";  # master @ 2024-12-21
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
     fenix = {
-      url = "github:nix-community/fenix/69c2c0c3c2f56314966dae21d79274515b228482";  # main @ 2024-08-03
+      url = "github:nix-community/fenix/6c2c568c407a0489295194900be09e75c6603a25";  # main @ 2024-12-22
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-lsp-booster = {
       url = "github:slotThe/emacs-lsp-booster-flake/7d110295988fc9bf7fd43bb0cabfbe58a4a5ecf8";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    soft-serve = {
-      url = "github:paulroden/soft-serve";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,7 +44,6 @@
     , emacs-lsp-booster
     , fenix
     , eudaemon
-    , soft-serve
     , ...
     }:
   let
@@ -60,7 +54,6 @@
       overlays = [
         emacs-lsp-booster.overlays.default
         fenix.overlays.default
-        soft-serve.overlays.default
         (_: _: { eud = eudaemon.packages.${system}.default; })
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
       ];
