@@ -26,6 +26,7 @@
       "iina"
       "jordanbaird-ice"
       "jquake"
+      "kaleidoscope"
       "logseq"
       "meetingbar"
       "moom"
