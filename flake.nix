@@ -26,11 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-lsp-booster = {
-      url = "github:slotThe/emacs-lsp-booster-flake/7d110295988fc9bf7fd43bb0cabfbe58a4a5ecf8";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     eudaemon = {
       url = "github:paulroden/eud";
     };
@@ -41,7 +36,6 @@
     { nixpkgs
     , darwin
     , home-manager
-    , emacs-lsp-booster
     , fenix
     , eudaemon
     , ...
@@ -52,7 +46,6 @@
       localSystem = system;
       config.allowUnfree = true;
       overlays = [
-        emacs-lsp-booster.overlays.default
         fenix.overlays.default
         (_: _: { eud = eudaemon.packages.${system}.default; })
         (import ./Nix/Home/programs/emacs/emacs-patch.nix { inherit pkgs; })
